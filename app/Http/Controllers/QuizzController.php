@@ -16,7 +16,7 @@ class QuizzController extends Controller
      */
     public function index()
     {
-        $quizzs = Quizz::all();
+        $quizzs = Quizz::notdeleted()->get();
         return view('quizzs.index' , compact('quizzs') );
     }
 

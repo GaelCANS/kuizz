@@ -16,7 +16,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        $templates = Template::all();
+        $templates = Template::notdeleted()->get();
         return view('templates.index' , compact('templates'));
     }
 
@@ -51,7 +51,8 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        //
+        $template = Template::findOrFail($id);
+        return view('templates.show' , compact('template'));
     }
 
     /**
@@ -62,8 +63,6 @@ class TemplateController extends Controller
      */
     public function edit($id)
     {
-        $template = Template::findOrFail($id);
-        return view('templates.show' , compact('template'));
     }
 
     /**
