@@ -37,7 +37,7 @@ class TemplateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\TemplateRequest $request)
     {
         $template = Template::create($request->all());
         return redirect(action('TemplateController@index'))->with('success' , "Le template {$template->name} a bien été crée.");
@@ -72,7 +72,7 @@ class TemplateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\TemplateRequest $request, $id)
     {
         $template = Template::findOrFail($id);
         $template->update($request->all());

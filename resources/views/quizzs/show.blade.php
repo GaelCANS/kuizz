@@ -28,6 +28,10 @@
         </div>
     </div>
 
+    <div class="d-inline-block status">
+        {!! Form::select('template_id',$templates , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}
+    </div>
+
     <div class="row">
         <div class="form-group">
             <div class="col-md-12">

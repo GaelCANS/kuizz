@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Quizz;
+use App\Template;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,7 +29,8 @@ class QuizzController extends Controller
     public function create()
     {
         $quizz = null;
-        return view('quizzs.show' , compact('quizz'));
+        $templates = Template::notdeleted()->pluck('name' , 'id')->toArray();
+        return view('quizzs.show' , compact('quizz' , 'templates'));
     }
 
     /**
@@ -37,7 +39,7 @@ class QuizzController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\QuizzRequest $request)
     {
         $quizz = Quizz::create( $request->all() );
         return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$quizz->name} a bien été crée.");
@@ -52,7 +54,8 @@ class QuizzController extends Controller
     public function show($id)
     {
         $quizz = Quizz::findOrFail($id);
-        return view('quizzs.show' , compact('quizz'));
+        $templates = Template::notdeleted()->pluck('name' , 'id')->toArray();
+        return view('quizzs.show' , compact('quizz' , 'templates'));
     }
 
     /**
@@ -72,7 +75,7 @@ class QuizzController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\QuizzRequest $request, $id)
     {
 
         $quizz = Quizz::findOrFail($id);

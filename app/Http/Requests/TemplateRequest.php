@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class QuizzRequest extends Request
+class TemplateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class QuizzRequest extends Request
     public function rules()
     {
         return [
-            'name'          =>'required|string',
-            "template_id"   => "required|exists:templates,id",
+            'name'      =>'required|string',
+            'stylesheet'=>'required|string',
         ];
     }
 }
