@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <h6>Nom du marché</h6>
+                <h6>Nom du quizz</h6>
                 {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" ) ) !!}
             </div>
         </div>

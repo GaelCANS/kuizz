@@ -33,6 +33,17 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
 
+        // Template
+        Route::resource(
+            'template',
+            'TemplateController' ,
+            array(
+                'names' => array(
+                    'index' => 'template-index'
+                )
+            )
+        );
+
     });
 
 });

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Quizz;
+use App\Template;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class QuizzController extends Controller
+class TemplateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class QuizzController extends Controller
      */
     public function index()
     {
-        $quizzs = Quizz::all();
-        return view('quizzs.index' , compact('quizzs') );
+        $templates = Template::all();
+        return view('templates.index' , compact('templates'));
     }
 
     /**
@@ -27,8 +27,8 @@ class QuizzController extends Controller
      */
     public function create()
     {
-        $quizz = null;
-        return view('quizzs.show' , compact('quizz'));
+        $template = null;
+        return view('templates.show' , compact('template'));
     }
 
     /**
@@ -39,8 +39,8 @@ class QuizzController extends Controller
      */
     public function store(Request $request)
     {
-        $quizz = Quizz::create( $request->all() );
-        return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$quizz->name} a bien été crée.");
+        $template = Template::create($request->all());
+        return redirect(action('TemplateController@index'))->with('success' , "Le template {$template->name} a bien été crée.");
     }
 
     /**
@@ -51,8 +51,7 @@ class QuizzController extends Controller
      */
     public function show($id)
     {
-        $quizz = Quizz::findOrFail($id);
-        return view('quizzs.show' , compact('quizz'));
+        //
     }
 
     /**
@@ -63,6 +62,8 @@ class QuizzController extends Controller
      */
     public function edit($id)
     {
+        $template = Template::findOrFail($id);
+        return view('templates.show' , compact('template'));
     }
 
     /**
@@ -74,10 +75,9 @@ class QuizzController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $quizz = Quizz::findOrFail($id);
-        $quizz->update( $request->all() );
-        return redirect()->back()->with('success' , "Le quizz vient d'être mis à jour");
+        $template = Template::findOrFail($id);
+        $template->update($request->all());
+        return redirect()->back()->with('success' , "Le template vient d'être mis à jour");
     }
 
     /**
@@ -88,9 +88,9 @@ class QuizzController extends Controller
      */
     public function destroy($id)
     {
-        $quizz = Quizz::findOrFail($id);
-        $name = $quizz->name;
-        $quizz->update( array('delete' => 1) );
-        return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$name} a bien été supprimé.");
+        $template = Template::findOrFail($id);
+        $name = $template->name;
+        $template->update( array('delete' => 1) );
+        return redirect(action('TemplateController@index'))->with('success' , "Le template {$name} a bien été supprimé.");
     }
 }
