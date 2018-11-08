@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Quizz;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +16,8 @@ class QuizzController extends Controller
      */
     public function index()
     {
-        //
+        $quizzs = Quizz::all();
+        return view('quizzs.index' , compact('quizzs') );
     }
 
     /**
@@ -25,7 +27,8 @@ class QuizzController extends Controller
      */
     public function create()
     {
-        //
+        $quizz = null;
+        return view('quizzs.show' , compact('quizz'));
     }
 
     /**
@@ -36,7 +39,8 @@ class QuizzController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $quizz = Quizz::create( $request->all() );
+        return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$quizz->name} a bien été crée.");
     }
 
     /**
@@ -47,7 +51,8 @@ class QuizzController extends Controller
      */
     public function show($id)
     {
-        //
+        $quizz = Quizz::findOrFail($id);
+        return view('quizzs.show' , compact('quizz'));
     }
 
     /**
@@ -58,7 +63,6 @@ class QuizzController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -70,7 +74,10 @@ class QuizzController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $quizz = Quizz::findOrFail($id);
+        $quizz->update( $request->all() );
+        return redirect()->back()->with('success' , "Le quizz vient d'être mis à jour");
     }
 
     /**

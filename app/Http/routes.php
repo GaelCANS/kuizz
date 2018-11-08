@@ -22,7 +22,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function()
     {
-        // Admin routes
+        // Quizz
+        Route::resource(
+            'quizz',
+            'QuizzController' ,
+            array(
+                'names' => array(
+                    'index' => 'quizz-index'
+                )
+            )
+        );
 
     });
 
