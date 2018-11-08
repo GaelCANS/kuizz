@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Quizz;
 use App\Template;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -30,7 +31,8 @@ class QuizzController extends Controller
     {
         $quizz = null;
         $templates = Template::notdeleted()->pluck('name' , 'id')->toArray();
-        return view('quizzs.show' , compact('quizz' , 'templates'));
+        $users = User::admin()->pluck('name' , 'id')->toArray();
+        return view('quizzs.show' , compact('quizz' , 'templates' , 'users'));
     }
 
     /**
@@ -55,7 +57,8 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::findOrFail($id);
         $templates = Template::notdeleted()->pluck('name' , 'id')->toArray();
-        return view('quizzs.show' , compact('quizz' , 'templates'));
+        $users = User::admin()->pluck('name' , 'id')->toArray();
+        return view('quizzs.show' , compact('quizz' , 'templates' , 'users'));
     }
 
     /**

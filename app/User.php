@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Library\Traits\Scopable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Scopable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Scope "admin"
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeAdmin( $query ) {
+        return $query->where('admin' , '1');
+    }
 }
