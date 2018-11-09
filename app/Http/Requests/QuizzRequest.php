@@ -26,6 +26,7 @@ class QuizzRequest extends Request
         return [
             'name'          =>'required|string',
             "template_id"   => "required|exists:templates,id",
+            'timing'        => 'integer'
         ];
     }
 }

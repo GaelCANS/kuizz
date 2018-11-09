@@ -37,6 +37,15 @@
     </div>
 
     <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Timeur <small>(0 pour ne pas mettre de limite de temps)</small></h6>
+                {!! Form::text( 'timing' , null , array( 'class' => 'form-control' , 'placeholder' => "Indiquez le temps en secondes par question" ) ) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="form-group">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">
