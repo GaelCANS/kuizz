@@ -2,10 +2,14 @@
 
 namespace App;
 
+use App\Library\Traits\Scopable;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+
+    use Scopable;
+
     protected $guarded = array('id');
 
 
@@ -36,7 +40,7 @@ class Question extends Model
     // 1 to many
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->hasMany('App\Answer')->where('delete',0);
     }
 
 }

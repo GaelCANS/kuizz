@@ -82,6 +82,17 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $question->load('Answers');
+        $question->update( array('delete' => 1) );
+        $answers = $question->answers();
+        $answers->update( array('delete' => 1) );
+
+        return response()->json(
+            array(
+                'state'=> 1,
+                'id' => $id
+            )
+        );
     }
 }

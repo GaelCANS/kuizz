@@ -33,6 +33,17 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
 
+        // Question
+        Route::resource(
+            'question',
+            'QuestionController' ,
+            array(
+                'names' => array(
+                    'index' => 'question-index'
+                )
+            )
+        );
+
         // Template
         Route::resource(
             'template',
