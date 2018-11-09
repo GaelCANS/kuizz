@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
+use App\Question;
 use App\Quizz;
 use App\Template;
 use App\User;
@@ -56,6 +58,8 @@ class QuizzController extends Controller
     public function show($id)
     {
         $quizz = Quizz::findOrFail($id);
+        $quizz->load('Questions');
+        $quizz->questions->load('Answers');
         $templates = Template::notdeleted()->pluck('name' , 'id')->toArray();
         $users = User::admin()->pluck('name' , 'id')->toArray();
         return view('quizzs.show' , compact('quizz' , 'templates' , 'users'));
@@ -80,9 +84,11 @@ class QuizzController extends Controller
      */
     public function update(Requests\QuizzRequest $request, $id)
     {
-
         $quizz = Quizz::findOrFail($id);
-        $quizz->update( $request->all() );
+        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' ) );
+        Question::saveQuestions($request->only('question'));
+        Answer::saveAnswers($request->only('answer'));
+
         return redirect()->back()->with('success' , "Le quizz vient d'être mis à jour");
     }
 

@@ -45,6 +45,13 @@
         </div>
     </div>
 
+    <div id="container-questions">
+        @forelse($quizz->questions as $question)
+            @include('questions.show')
+            @empty
+        @endforelse
+    </div>
+
     <div class="row">
         <div class="form-group">
             <div class="col-md-12">
