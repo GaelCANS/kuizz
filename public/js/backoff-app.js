@@ -5,61 +5,176 @@ $(document).ready(function(){
      *
      * Initialisation du select2
      */
-    $('select[multiple]').select2();
-    $('select.select2').select2();
+    $('select[multiple]').select2()
+    $('select.select2').select2()
 
 
     /**
-     * Quizz
+     * Quizz - question
      */
     $('#container-questions').on('click' , '.del-question' , function () {
         if(confirm("Voulez-vous supprimer cette question ?")) {
-
-            var link = $(this).data('link');
-            var id = $(this).data('question');
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                    method: "DELETE",
-                    url: link,
-                    data: {}
-                })
-                .done(function( data ) {
-                    $('#question-'+data.id).remove();
-                });
+            if ($(this).data('question') == 'create') {
+                deteleNewQuestion($(this));
+            }
+            else {
+                deleteQuestion($(this));
+            }
         }
-    });
+    })
 
 
     /**
-     * Quizz
+     * Quizz - question
+     */
+    $('#add-question').on('click' , function () {
+        $('#tpl-question').clone().removeClass('d-none').addClass('item-question').attr('id' , '').appendTo('#container-questions')
+        refreshQuestionOrder()
+    })
+
+
+    /**
+     * Quizz - answer
+     */
+    $('#container-questions').on('click' , '.add-answer' , function () {
+        var answer = $('#tpl-answer').clone()
+        _tpl = _.replace(answer.html(), /-UNIQID/g, '-'+_.now())
+        var _parent = $(this).parents('.item-question').find('.container-answers')
+        _parent.append(_tpl)
+        refreshAnswerOrder()
+    })
+
+
+    /**
+     * Quizz - answer
      */
     $('#container-questions').on('click' , '.del-answer' , function () {
         if(confirm("Voulez-vous supprimer cette réponse ?")) {
-
-            var link = $(this).data('link');
-            var id = $(this).data('answer');
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                    method: "DELETE",
-                    url: link,
-                    data: {}
-                })
-                .done(function( data ) {
-                    $('#answer-'+data.id).remove();
-                });
+            if ($(this).data('answer') == 'create') {
+                deteleNewAnswer($(this))
+            }
+            else {
+                deleteAnswer($(this))
+            }
         }
+    })
+
+
+    /**
+     * Quizz - question
+     */
+    $(".sortable").sortable({
+        placeholder: "ui-state-highlight",
+        stop: refreshQuestionOrder,
     });
 
 });
+
+
+/**
+ * Quizz - question
+ */
+function refreshQuestionOrder()
+{
+    var i = 1
+    $('#container-questions .item-question').each(function(){
+        $(this).find('.question-order').val(i)
+        $(this).find('span.order').text(i)
+        i++
+    })
+}
+
+
+/**
+ * Quizz - answer
+ */
+function refreshAnswerOrder()
+{
+    $('#container-questions .item-question').each(function () {
+        var i = 1
+        $(this).find('.item-answer').each(function () {
+            $(this).find('.answer-order').val(i)
+            i++
+        })
+
+    })
+
+}
+
+/**
+ * Quizz - question
+ */
+function deleteQuestion(obj)
+{
+    var link = obj.data('link')
+    var id = obj.data('question')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "DELETE",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            removeItem($('#question-'+data.id))
+            refreshQuestionOrder()
+        })
+}
+
+/**
+ * Quizz - question
+ */
+function deteleNewQuestion(obj)
+{
+    removeItem(obj.parent('.new-question'))
+    refreshQuestionOrder()
+}
+
+/**
+ * Quizz - answer
+ */
+function deleteAnswer(obj)
+{
+    var link = obj.data('link')
+    var id = obj.data('answer')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "DELETE",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            removeItem($('#answer-'+data.id))
+            refreshAnswerOrder()
+        })
+}
+
+/**
+ * Quizz - answer
+ */
+function deteleNewAnswer(obj)
+{
+    removeItem(obj.parents('.new-answer'))
+    refreshAnswerOrder()
+}
+
+/**
+ * Commun
+ *
+ * Destruction d'un élément
+ */
+function removeItem(selector)
+{
+    selector.remove()
+}

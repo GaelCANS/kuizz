@@ -13,6 +13,9 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
+    <!-- Sortable -->
+    <link href="{{ asset('/css/jquery-ui.min.css') }}?v={{ time() }}" rel="stylesheet">
+
     <!-- App -->
     <link href="{{ asset('/css/backoff-app.css') }}?v={{ time() }}" rel="stylesheet">
 

@@ -45,11 +45,23 @@
         </div>
     </div>
 
-    <div id="container-questions">
+    <ul id="container-questions" class="sortable">
         @forelse($quizz->questions as $question)
             @include('questions.show')
             @empty
         @endforelse
+        @include('questions.new')
+        @include('answers.new')
+    </ul>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-secondary" id="add-question">
+                    <i class="fa fa-fw fa-save"></i>Nouvelle question
+                </button>
+            </div>
+        </div>
     </div>
 
     <div class="row">

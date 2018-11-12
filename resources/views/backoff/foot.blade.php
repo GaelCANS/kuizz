@@ -10,6 +10,12 @@
 <!-- Select 2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js" integrity="sha256-FcVIknBiVRk5KLQeIBb9VQdtFRMqwffXyZ+D8q0gQro=" crossorigin="anonymous"></script>
 
+<!-- Sortable -->
+<script src="{{ url('/js/jquery-ui.min.js' ) }}"></script>
+
+<!-- Lodash -->
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+
 <!-- Chargement des JS -->
 <script src="{{ url('/js/backoff-app.js?v='.time() ) }}"></script>
 <script src="{{ url('/js/laravel.js?v=1' ) }}"></script>

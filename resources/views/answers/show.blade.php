@@ -1,10 +1,10 @@
-<div  id="answer-{{$answer->id}}">
+<div  id="answer-{{$answer->id}}" class="item-answer">
 
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 {!! Form::text( 'answer[update]['.$answer->id.'][wording]' , $answer->wording , array( 'class' => 'form-control' , 'placeholder' => "Votre réponse" ) ) !!}
-                {!! Form::hidden('answer[update]['.$answer->id.'][order]') !!}
+                {!! Form::hidden('answer[update]['.$answer->id.'][order]' , $answer->order , array('class' => 'answer-order')) !!}
 
                 <button type="button" class="btn btn-outline-secondary icon-btn del-answer" data-anwser="{{$answer->id}}"  data-link="{{action('AnswerController@destroy' , array('id' => $answer->id))}}"><i class="mdi mdi-border-color"></i></button>
             </div>
