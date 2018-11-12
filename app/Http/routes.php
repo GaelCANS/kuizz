@@ -44,6 +44,17 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
 
+        // Answer
+        Route::resource(
+            'answer',
+            'AnswerController' ,
+            array(
+                'names' => array(
+                    'index' => 'anwser-index'
+                )
+            )
+        );
+
         // Template
         Route::resource(
             'template',

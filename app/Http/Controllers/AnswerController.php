@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -81,6 +82,14 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->update(array('delete' =>  1));
+        
+        return response()->json(
+            array(
+                'state'=> 1,
+                'id' => $id
+            )
+        );
     }
 }

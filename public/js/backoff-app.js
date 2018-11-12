@@ -35,4 +35,31 @@ $(document).ready(function(){
         }
     });
 
+
+    /**
+     * Quizz
+     */
+    $('#container-questions').on('click' , '.del-answer' , function () {
+        if(confirm("Voulez-vous supprimer cette réponse ?")) {
+
+            var link = $(this).data('link');
+            var id = $(this).data('answer');
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                    method: "DELETE",
+                    url: link,
+                    data: {}
+                })
+                .done(function( data ) {
+                    $('#answer-'+data.id).remove();
+                });
+        }
+    });
+
 });
