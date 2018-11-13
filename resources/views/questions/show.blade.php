@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-secondary add-answer">
+                            <button type="button" class="btn btn-secondary add-answer" data-question="{{$question->id}}">
                                 <i class="fa fa-fw fa-save"></i>Nouvelle réponse
                             </button>
                         </div>
@@ -22,10 +22,10 @@
         </div>
     </div>
 
-    <div class="container-answers">
+    <ul class="container-answers sortable">
         @forelse($question->answers as $answer)
             @include('answers.show')
             @empty
         @endforelse
-    </div>
+    </ul>
 </li>

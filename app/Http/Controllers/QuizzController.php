@@ -86,7 +86,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::findOrFail($id);
         $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' ) );
-        Question::saveQuestions($request->only('question'));
+        Question::saveQuestions($request->only('question'), $id);
         Answer::saveAnswers($request->only('answer'));
 
         return redirect()->back()->with('success' , "Le quizz vient d'être mis à jour");

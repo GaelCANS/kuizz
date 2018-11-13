@@ -13,7 +13,7 @@ class Question extends Model
     protected $guarded = array('id');
 
 
-    public static function saveQuestions($questions)
+    public static function saveQuestions($questions , $quizz_id)
     {
         $questions = $questions['question'];
         // Update
@@ -26,8 +26,16 @@ class Question extends Model
 
         // Save
         if (isset($questions['create'])) {
-            foreach ($questions['update'] as $question_id => $question_datas) {
-                $question = self::create($question_datas);
+            foreach ($questions['create']['wording'] as $question_id => $question_datas) {
+
+                if ( trim($questions['create']['wording'][$question_id]) != '') {
+                    $question_value = array(
+                        'wording' => $questions['create']['wording'][$question_id],
+                        'order' => $questions['create']['order'][$question_id],
+                        'quizz_id' => $quizz_id
+                    );
+                    $question = self::create($question_value);
+                }
             }
         }
     }

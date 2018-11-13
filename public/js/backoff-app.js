@@ -37,7 +37,9 @@ $(document).ready(function(){
      * Quizz - answer
      */
     $('#container-questions').on('click' , '.add-answer' , function () {
+        var question_id = $(this).data('question')
         var answer = $('#tpl-answer').clone()
+        answer.find('.answer-question-id').val(question_id)
         _tpl = _.replace(answer.html(), /-UNIQID/g, '-'+_.now())
         var _parent = $(this).parents('.item-question').find('.container-answers')
         _parent.append(_tpl)
