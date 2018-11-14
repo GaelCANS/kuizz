@@ -46,7 +46,7 @@ class QuizzController extends Controller
     public function store(Requests\QuizzRequest $request)
     {
         $quizz = Quizz::create( $request->all() );
-        return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$quizz->name} a bien été crée.");
+        return redirect()->back()->with('success' , "Le quizz vient d'être ajouté");
     }
 
     /**

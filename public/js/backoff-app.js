@@ -74,6 +74,8 @@ function refreshQuestionOrder()
         $(this).find('span.order').text(i)
         i++
     })
+
+    refreshAnswerOrder()
 }
 
 

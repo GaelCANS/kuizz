@@ -46,21 +46,25 @@
     </div>
 
     <ul id="container-questions" class="sortable" data-quizz="{{ $quizz != null ? $quizz->id : 0 }}">
-        @forelse($quizz->questions as $question)
-            @include('questions.show')
-            @empty
-        @endforelse
+        @if (!empty($quizz->questions))
+            @forelse($quizz->questions as $question)
+                @include('questions.show')
+                @empty
+            @endforelse
+        @endif
     </ul>
 
-    <div class="row">
-        <div class="form-group">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-secondary" id="add-question" data-link="{{ action('QuestionController@store') }}">
-                    <i class="fa fa-fw fa-save"></i>Nouvelle question
-                </button>
+    @if ($quizz != null)
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-secondary" id="add-question" data-link="{{ action('QuestionController@store') }}">
+                        <i class="fa fa-fw fa-save"></i>Nouvelle question
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="row">
         <div class="form-group">

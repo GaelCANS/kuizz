@@ -33,7 +33,7 @@ class Question extends Model
     // 1 to many
     public function answers()
     {
-        return $this->hasMany('App\Answer')->where('delete',0);
+        return $this->hasMany('App\Answer')->where('delete',0)->orderBy('order' , 'ASC');
     }
 
 }
