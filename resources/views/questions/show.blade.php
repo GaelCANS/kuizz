@@ -6,6 +6,18 @@
                 {!! Form::text( 'question[update]['.$question->id.'][wording]' , $question->wording , array( 'class' => 'form-control' , 'placeholder' => "Votre question" ) ) !!}
                 {!! Form::hidden('question[update]['.$question->id.'][order]' , $question->order , array('class' => 'question-order')) !!}
 
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+
+                {!! Form::text( 'question[update]['.$question->id.'][comment]' , $question->comment , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
+
                 <button type="button" class="btn btn-outline-secondary icon-btn del-question" data-question="{{$question->id}}"  data-link="{{action('QuestionController@destroy' , array('id' => $question->id))}}"><i class="mdi mdi-border-color"></i></button>
 
                 <div class="row">
