@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-secondary add-answer" data-question="{{$question->id}}">
+                            <button type="button" class="btn btn-secondary add-answer" data-link="{{ action('AnswerController@store') }}">
                                 <i class="fa fa-fw fa-save"></i>Nouvelle réponse
                             </button>
                         </div>

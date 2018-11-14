@@ -37,7 +37,16 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Answer::whereQuestionId($request->get('question_id'))->notdeleted()->count();
+        $order += 1;
+        $answer = Answer::create( array('question_id' => $request->get('question_id') , 'order' => $order) );
+        $html = view('answers.show' , compact('answer'))->render();
+        return response()->json(
+            array(
+                'html'          => $html,
+                'question_id'   => $request->get('question_id')
+            )
+        );
     }
 
     /**

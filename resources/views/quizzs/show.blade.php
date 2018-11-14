@@ -45,19 +45,17 @@
         </div>
     </div>
 
-    <ul id="container-questions" class="sortable">
+    <ul id="container-questions" class="sortable" data-quizz="{{ $quizz != null ? $quizz->id : 0 }}">
         @forelse($quizz->questions as $question)
             @include('questions.show')
             @empty
         @endforelse
-        @include('questions.new')
-        @include('answers.new')
     </ul>
 
     <div class="row">
         <div class="form-group">
             <div class="col-md-12">
-                <button type="button" class="btn btn-secondary" id="add-question">
+                <button type="button" class="btn btn-secondary" id="add-question" data-link="{{ action('QuestionController@store') }}">
                     <i class="fa fa-fw fa-save"></i>Nouvelle question
                 </button>
             </div>

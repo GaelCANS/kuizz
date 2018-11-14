@@ -23,29 +23,19 @@ $(document).ready(function(){
         }
     })
 
-
     /**
      * Quizz - question
      */
     $('#add-question').on('click' , function () {
-        $('#tpl-question').clone().removeClass('d-none').addClass('item-question').attr('id' , '').appendTo('#container-questions')
-        refreshQuestionOrder()
+        addQuestion($(this))
     })
-
 
     /**
      * Quizz - answer
      */
     $('#container-questions').on('click' , '.add-answer' , function () {
-        var question_id = $(this).data('question')
-        var answer = $('#tpl-answer').clone()
-        answer.find('.answer-question-id').val(question_id)
-        _tpl = _.replace(answer.html(), /-UNIQID/g, '-'+_.now())
-        var _parent = $(this).parents('.item-question').find('.container-answers')
-        _parent.append(_tpl)
-        refreshAnswerOrder()
+        addAnswer($(this))
     })
-
 
     /**
      * Quizz - answer
@@ -179,4 +169,52 @@ function deteleNewAnswer(obj)
 function removeItem(selector)
 {
     selector.remove()
+}
+
+/**
+ * Quizz- question
+ */
+function addQuestion(obj)
+{
+    var link = obj.data('link')
+    var id = $('#container-questions').data('quizz')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "POST",
+            url: link,
+            data: {quizz_id:id}
+        })
+        .done(function( data ) {
+            $('#container-questions').append(data.html)
+        })
+}
+
+/**
+ * Quizz- answer
+ */
+function addAnswer(obj)
+{
+    var link = obj.data('link')
+    var id = obj.parents('.item-question').attr('id').replace('question-','')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "POST",
+            url: link,
+            data: {question_id:id}
+        })
+        .done(function( data ) {
+            $('#question-'+data.question_id+' .container-answers').append(data.html)
+        })
 }

@@ -37,7 +37,15 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Question::whereQuizzId($request->get('quizz_id'))->notdeleted()->count();
+        $order += 1;
+        $question = Question::create( array('quizz_id' => $request->get('quizz_id') , 'order' => $order) );
+        $html = view('questions.show' , compact('question'))->render();
+        return response()->json(
+            array(
+                'html'      => $html
+            )
+        );
     }
 
     /**
