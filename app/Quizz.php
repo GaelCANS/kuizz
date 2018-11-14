@@ -15,6 +15,6 @@ class Quizz extends Model
     // 1 to many
     public function questions()
     {
-        return $this->hasMany('App\Question')->where('delete',0);
+        return $this->hasMany('App\Question')->where('delete',0)->orderBy('order' , 'ASC');
     }
 }

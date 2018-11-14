@@ -216,5 +216,10 @@ function addAnswer(obj)
         })
         .done(function( data ) {
             $('#question-'+data.question_id+' .container-answers').append(data.html)
+
+            $('#question-'+data.question_id+' .container-answers').sortable({
+                placeholder: "ui-state-highlight",
+                stop: refreshQuestionOrder,
+            });
         })
 }
