@@ -37,4 +37,8 @@ class User extends Authenticatable
     public function scopeAdmin( $query ) {
         return $query->where('admin' , '1');
     }
+
+    public function getFullnameAttribute() {
+        return $this->firstname." ".$this->name;
+    }
 }

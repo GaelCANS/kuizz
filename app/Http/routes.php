@@ -66,6 +66,17 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
 
+        // User
+        Route::resource(
+            'user',
+            'UserController' ,
+            array(
+                'names' => array(
+                    'index' => 'user-index'
+                )
+            )
+        );
+
     });
 
 });
