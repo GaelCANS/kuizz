@@ -6,7 +6,7 @@
                 {!! Form::text( 'answer[update]['.$answer->id.'][wording]' , $answer->wording , array( 'class' => 'form-control' , 'placeholder' => "Votre réponse" ) ) !!}
                 {!! Form::hidden('answer[update]['.$answer->id.'][order]' , $answer->order , array('class' => 'answer-order')) !!}
 
-                <button type="button" class="btn btn-outline-secondary icon-btn del-answer" data-anwser="{{$answer->id}}"  data-link="{{action('AnswerController@destroy' , array('id' => $answer->id))}}"><i class="mdi mdi-border-color"></i></button>
+                <button type="button" class="btn btn-outline-secondary icon-btn del-answer" data-anwser="{{$answer->id}}"  data-link="{{action('AnswerController@destroy' , array('id' => $answer->id))}}"><i class="mdi mdi-delete"></i></button>
             </div>
         </div>
     </div>

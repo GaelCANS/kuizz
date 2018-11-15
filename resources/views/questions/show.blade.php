@@ -18,7 +18,7 @@
 
                 {!! Form::text( 'question[update]['.$question->id.'][comment]' , $question->comment , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
 
-                <button type="button" class="btn btn-outline-secondary icon-btn del-question" data-question="{{$question->id}}"  data-link="{{action('QuestionController@destroy' , array('id' => $question->id))}}"><i class="mdi mdi-border-color"></i></button>
+                <button type="button" class="btn btn-outline-secondary icon-btn del-question" data-question="{{$question->id}}"  data-link="{{action('QuestionController@destroy' , array('id' => $question->id))}}"><i class="mdi mdi-delete"></i></button>
 
                 <div class="row">
                     <div class="form-group">
