@@ -28,6 +28,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Commentaire</h6>
+                {!! Form::textarea( 'comment' , null , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
+            </div>
+        </div>
+    </div>
+
     <div class="d-inline-block status">
         {!! Form::select('template_id',$templates , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}
     </div>

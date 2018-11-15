@@ -85,7 +85,7 @@ class QuizzController extends Controller
     public function update(Requests\QuizzRequest $request, $id)
     {
         $quizz = Quizz::findOrFail($id);
-        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' ) );
+        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' , 'comment' ) );
         Question::saveQuestions($request->only('question'));
         Answer::saveAnswers($request->only('answer'));
 
