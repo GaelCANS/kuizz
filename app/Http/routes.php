@@ -88,5 +88,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+Route::group(['prefix' => '/'], function() {
 
-Route::get('/home', 'HomeController@index');
+    // Quizz - intro
+    Route::get('/{name}', 'QuizzController@intro')->name('intro-quizz');
+    // Quizz - rules
+    Route::get('/{name}/rules', 'QuizzController@rules')->name('rules-quizz');
+    // Quizz - register player
+    Route::get('/{name}/player', 'QuizzController@player')->name('player-quizz');
+
+});
+
+
+
+    Route::get('/home', 'HomeController@index');

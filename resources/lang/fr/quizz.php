@@ -3,11 +3,16 @@
 return array(
 
     "rando" => array(
-        'intro' => "thème rando"
+        "btn-start" => ''
     ),
 
     "montagne" => array(
-        'intro' => "thème montagne"
+        "btn-start" => ''
+    ),
+
+    "assurance" => array(
+        "btn-start" => "En avant !",
+        "btn-rules"  => "On se lance ?"
     ),
 
 );

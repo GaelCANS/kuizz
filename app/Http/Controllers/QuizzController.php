@@ -105,4 +105,40 @@ class QuizzController extends Controller
         $quizz->update( array('delete' => 1) );
         return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$name} a bien été supprimé.");
     }
+    
+    
+    public function intro($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+
+        return view('quizz.intro' , compact('quizz'));
+    }
+
+
+    public function rules($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+        $quizz->load('Questions');
+
+
+        return view('quizz.rules' , compact('quizz'));
+    }
+
+
+    public function player($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+
+
+        return view('quizz.player' , compact('quizz'));
+    }
 }

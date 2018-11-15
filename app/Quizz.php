@@ -17,4 +17,10 @@ class Quizz extends Model
     {
         return $this->hasMany('App\Question')->where('delete',0)->orderBy('order' , 'ASC');
     }
+
+    // 1 to 1
+    public function template()
+    {
+        return $this->belongsTo('App\Template');
+    }
 }

@@ -26,7 +26,7 @@
                                         <tr>
                                             <th>{{$quizz->name}}</th>
                                             <th>--</th>
-                                            <th>{{$quizz->template}}</th>
+                                            <th>{{$quizz->template->name}}</th>
                                             <th>
                                                 <a href="{{action("QuizzController@show" , $quizz)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
                                                 <a href="{{action("QuizzController@destroy" , $quizz)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
