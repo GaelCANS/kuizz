@@ -26,6 +26,7 @@ class TemplateRequest extends Request
         return [
             'name'      =>'required|string',
             'stylesheet'=>'required|string',
+            'texts'     =>'required|string',
         ];
     }
 }

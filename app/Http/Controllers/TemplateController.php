@@ -6,6 +6,7 @@ use App\Template;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller
 {

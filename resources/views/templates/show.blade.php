@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <h4 class="page-title d-inline-block mr-2">
         @if( $template == null ) Création @else Édition @endif d'un template @if( $template != null ) @endif
     </h4>
@@ -38,6 +39,15 @@
     </div>
 
     <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Textes associés</h6>
+                {!! Form::text( 'texts' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le fichier de texte" ) ) !!}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="form-group">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary">
@@ -52,5 +62,7 @@
     {!! Form::close() !!}
 
     </div>
+
+
 
 @endsection
