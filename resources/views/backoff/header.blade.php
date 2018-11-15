@@ -35,7 +35,7 @@
                     <i class="icon-arrow-down mx-0"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                    <a class="dropdown-item preview-item" href="#">
+                    <a class="dropdown-item preview-item" href="{{route('mon-compte' , array(auth()->user()))}}">
 
                         <div class="preview-thumbnail">
                             <div class="preview-icon">

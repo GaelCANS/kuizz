@@ -31,7 +31,7 @@
                 </a>
                 <div class="collapse" id="ui-advanced" style="">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item @if( Route::currentRouteName() == 'user-index' ) active @endif"><a class="nav-link" href="{{route('user-index')}}"><i class="icon-people mr-2"></i>Utilisateurs</a></li>
+                        <li class="nav-item @if( Route::currentRouteName() == 'users-index' ) active @endif"><a class="nav-link" href="{{route('users-index')}}"><i class="icon-people mr-2"></i>Utilisateurs</a></li>
                     </ul>
                 </div>
             </li>

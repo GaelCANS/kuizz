@@ -68,14 +68,19 @@ Route::group(['middleware' => 'auth'], function () {
 
         // User
         Route::resource(
-            'user',
-            'UserController' ,
+            'users',
+            'UserController',
             array(
                 'names' => array(
-                    'index' => 'user-index'
+                    'index' => 'users-index',
+                    'show'  => 'show-user',
+                    'store' => 'store-user',
+                    'update' => 'update-user'
                 )
             )
         );
+
+        Route::get('/moncompte/{id}' , 'UserController@show')->name('mon-compte');
 
     });
 
