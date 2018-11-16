@@ -31,6 +31,13 @@ $(document).ready(function(){
     })
 
     /**
+     * Quizz - quizz
+     */
+    $('#name-quizz').on('keyup', function () {
+        $('#url-quizz').val(_.kebabCase($('#name-quizz').val()))
+    })
+
+    /**
      * Quizz - answer
      */
     $('#container-questions').on('click' , '.add-answer' , function () {

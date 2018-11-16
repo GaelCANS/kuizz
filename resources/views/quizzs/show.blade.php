@@ -23,10 +23,12 @@
         <div class="col-md-4">
             <div class="form-group">
                 <h6>Nom du quizz</h6>
-                {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" ) ) !!}
+                {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" , 'id' => 'name-quizz') ) !!}
+                {!! Form::hidden( 'url' , null , array( 'class' => 'form-control' , 'id' => 'url-quizz' , 'data-empty' => '' ) ) !!}
             </div>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-4">

@@ -28,7 +28,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <h6>Nom</h6>
-                {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez votre nom" ) ) !!}
+                {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez votre nom"  ) ) !!}
             </div>
         </div>
     </div>
