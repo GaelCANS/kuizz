@@ -29,4 +29,11 @@ class Answer extends Model
     public function question() {
         return $this->belongsTo('App\Question');
     }
+
+    // many to many
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }

@@ -96,6 +96,14 @@ Route::group(['prefix' => '/'], function() {
     Route::get('/{name}/rules', 'QuizzController@rules')->name('rules-quizz');
     // Quizz - register player
     Route::get('/{name}/player', 'QuizzController@player')->name('player-quizz');
+    // Quizz - store register player
+    Route::post('/{name}/player', 'QuizzController@newPlayer')->name('store-player-quizz');
+    // Quizz - question
+    Route::get('/{name}/question', 'QuizzController@question')->name('question-quizz');
+    // Quizz - store answer
+    Route::post('/{name}/question', 'QuizzController@answered')->name('answer-quizz');
+    // Quizz - end
+    Route::get('/{name}/end', 'QuizzController@end')->name('end-quizz');
 
 });
 

@@ -25,6 +25,23 @@ class Question extends Model
         }
     }
 
+    public static function getScore($question , $answers)
+    {
+        // Récupération des bonnes réponses
+        $goods = Answer::whereQuestionId($question->id)->whereGood(1)->pluck('id')->toArray();
+
+        // Si différence entre les questions et les réponses retourne erreur
+        if (count($answers) != count($goods)) return 0;
+
+        // Sinon on compare les deux tableaux
+        return count(array_diff($answers,$goods)) == 0 ? 1 : 0;
+    }
+
+    public static function nextQuestion($question)
+    {
+        return Question::where('quizz_id',$question->quizz_id)->notdeleted()->whereOrder($question->order+1)->first();
+    }
+
     // 1 to 1
     public function quizz() {
         return $this->belongsTo('App\Quizz');

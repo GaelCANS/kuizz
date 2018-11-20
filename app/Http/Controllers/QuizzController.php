@@ -7,6 +7,7 @@ use App\Question;
 use App\Quizz;
 use App\Template;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -138,7 +139,95 @@ class QuizzController extends Controller
 
         $quizz->load('Template');
 
-
         return view('quizz.player' , compact('quizz'));
+    }
+
+
+    public function newPlayer(Requests\PlayerRequest $request , $name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $datas = $request->all();
+        $datas['quizz_id'] = $quizz->id;
+        $user = User::create($datas);
+        $question = Question::where('quizz_id',$quizz->id)->notdeleted()->whereOrder(1)->first();
+        session( array('user' => $user , 'question' => $question ) );
+
+        return redirect(action('QuizzController@question' , array('name' => $quizz->url)));
+    }
+
+
+    public function question($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        if (session('question') == null && session('user') == null) return redirect(action('QuizzController@intro' , array('name' => $name)));
+
+        $quizz->load('Template');
+        $quizz->load('Questions');
+
+        $question = session('question');
+        if ($question != null) {
+            $question->load('Answers');
+            return view('quizz.question' , compact('quizz' , 'question'));
+        }
+
+        return redirect(action('QuizzController@end' , array('name' => $quizz->url)));
+    }
+
+
+    public function answered(Request $request, $name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        // Récupération de l'utilisateur et de la question
+        $user = session('user');
+        $question = session('question');
+
+        // Enregistrement des réponses en base
+        $requestAnswsers = $request->only('answer');
+        if ($requestAnswsers['answer'] != null) {
+            $anwsers = Answer::whereIn('id', array_keys($requestAnswsers['answer']))->get();
+            $user->answers()->attach($anwsers, array("question_id" => $question->id));
+        }
+
+        // Récupération du score
+        $score = Question::getScore($question, array_keys((array)$requestAnswsers['answer']));
+        $user->questions()->attach($question, array("score" => $score));
+
+        // Mise en session de la prochaine question
+        session( array('question' => Question::nextQuestion($question) ) );
+
+        return redirect(action('QuizzController@question' , array('name' => $quizz->url)));
+    }
+
+
+
+    public function end($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        if (session('question') == null && session('user') == null) return redirect(action('QuizzController@intro' , array('name' => $name)));
+
+        if (session('user')->finished_at == null ) {
+            session('user')->finished_at = Carbon::now();
+            session('user')->save();
+        }
+        
+        $quizz->load('Template');
+        $quizz->load('Questions');
+        $quizz->load('Users');
+        $user = session('user');
+        $score = Quizz::score(session('user'));
+        $duree = Quizz::duree(session('user'));
+        $rank = Quizz::rank($user);
+        $participants = Quizz::participants($quizz);
+
+
+        return view('quizz.end' , compact('quizz' , 'score' , 'duree' , 'user' , 'rank' , 'participants'));
     }
 }

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'admin'
+        'name', 'email', 'password', 'admin' , 'quizz_id'
     ];
 
     /**
@@ -40,5 +40,17 @@ class User extends Authenticatable
 
     public function getFullnameAttribute() {
         return $this->name;
+    }
+
+    // many to many
+    public function answers()
+    {
+        return $this->belongsToMany('App\Answer')->withTimestamps();
+    }
+
+    // many to many
+    public function questions()
+    {
+        return $this->belongsToMany('App\Question')->withTimestamps();
     }
 }
