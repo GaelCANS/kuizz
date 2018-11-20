@@ -35,6 +35,7 @@ return array(
         "comment-4"         => "Pansement",
         "comment-5"         => "Muscle",
         "comment-6"         => "Biscotto d'or",
+        'go-again'          => "On recommande ?"
     ),
 
 );

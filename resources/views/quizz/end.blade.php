@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-md-12 text-center">
-        <input type="button" class="btn btn-primary" value="On recommence ?" onclick="location.href = 'index.php';" style="font-size:25px;">
+        <a class="btn btn-primary" href="{{route('intro-quizz' , array('name' => $quizz->url))}}">{{ trans('quizz.'.$quizz->template->texts.'.go-again') }}</a>
     </div>
 
 
