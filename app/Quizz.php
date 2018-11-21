@@ -13,6 +13,12 @@ class Quizz extends Model
 
     protected $guarded = array('id');
 
+
+    public static function urlIsUnique($quizz,$url)
+    {
+        return Quizz::where('id','!=',$quizz->id)->where('url',$url)->count() == 0;
+    }
+
     /**
      * Return user's score
      *

@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cc50573b-d1ea-4419-afed-1e817548f941" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/fr/quizz.php" afterPath="$PROJECT_DIR$/resources/lang/fr/quizz.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/quizz/end.blade.php" afterPath="$PROJECT_DIR$/resources/views/quizz/end.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/QuizzController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuizzController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Quizz.php" afterPath="$PROJECT_DIR$/app/Quizz.php" />
     </list>
     <ignored path="htdocs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,12 +26,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="QuizzController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QuizzController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuizzController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1262">
-              <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+            <state relative-caret-position="195">
+              <caret line="89" column="68" selection-start-line="89" selection-start-column="68" selection-end-line="89" selection-end-column="68" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quizz.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Quizz.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="18" column="80" selection-start-line="18" selection-start-column="80" selection-end-line="18" selection-end-column="80" />
+              <folding>
+                <marker date="1542819093454" expanded="true" signature="1208:1694" placeholder="SELECT * FRO... cpt" />
+                <marker date="1542819093454" expanded="true" signature="1230:1666" placeholder="SELECT (@cpt... SUM" />
+                <marker date="1542819093454" expanded="true" signature="1298:1646" placeholder="SELECT SUM(s... question_user" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,26 +60,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="intro.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="intro.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/quizz/intro.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="99" selection-start-line="8" selection-start-column="99" selection-end-line="8" selection-end-column="157" />
+            <state relative-caret-position="180">
+              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Quizz.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Quizz.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
-              <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
-              <folding>
-                <marker date="1542730442765" expanded="true" signature="1058:1544" placeholder="SELECT * FRO... cpt" />
-                <marker date="1542730442765" expanded="true" signature="1080:1516" placeholder="SELECT (@cpt... SUM" />
-                <marker date="1542730442765" expanded="true" signature="1148:1496" placeholder="SELECT SUM(s... question_user" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -131,7 +131,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
+            <state relative-caret-position="1260">
               <caret line="93" column="58" selection-start-line="93" selection-start-column="58" selection-end-line="93" selection-end-column="69" />
               <folding />
             </state>
@@ -188,7 +188,6 @@
         <option value="$PROJECT_DIR$/resources/views/frontoff/head.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/quizzs/index.blade.php" />
         <option value="$PROJECT_DIR$/public/css/assurance/assurance.css" />
-        <option value="$PROJECT_DIR$/resources/views/quizz/intro.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/quizz/rules.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/users/show.blade.php" />
         <option value="$PROJECT_DIR$/public/js/backoff-app.js" />
@@ -201,10 +200,11 @@
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_11_20_135702_update_user_finishedAt.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Quizz.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/QuizzController.php" />
         <option value="$PROJECT_DIR$/resources/lang/fr/quizz.php" />
         <option value="$PROJECT_DIR$/resources/views/quizz/end.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/quizz/intro.blade.php" />
+        <option value="$PROJECT_DIR$/app/Quizz.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/QuizzController.php" />
       </list>
     </option>
   </component>
@@ -247,8 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -677,6 +675,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -815,24 +815,26 @@
       <workItem from="1542722741153" duration="2064000" />
       <workItem from="1542726834314" duration="1803000" />
       <workItem from="1542728667256" duration="1568000" />
-      <workItem from="1542730497787" duration="570000" />
+      <workItem from="1542730497787" duration="4931000" />
+      <workItem from="1542813351312" duration="1668000" />
+      <workItem from="1542818149881" duration="1299000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132111000" />
+    <option name="totallyTimeSpent" value="139439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="802" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19957082" sideWeight="0.8915493" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20529328" sideWeight="0.8915493" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31830987" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31830987" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31741574" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.26895565" sideWeight="0.1084507" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1203,26 +1205,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Quizz.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
-          <folding>
-            <marker date="1542730442765" expanded="true" signature="1058:1544" placeholder="SELECT * FRO... cpt" />
-            <marker date="1542730442765" expanded="true" signature="1080:1516" placeholder="SELECT (@cpt... SUM" />
-            <marker date="1542730442765" expanded="true" signature="1148:1496" placeholder="SELECT SUM(s... question_user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuizzController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1262">
-          <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/fr/quizz.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -1233,7 +1215,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="1260">
           <caret line="93" column="58" selection-start-line="93" selection-start-column="58" selection-end-line="93" selection-end-column="69" />
           <folding />
         </state>
@@ -1249,8 +1231,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/quizz/intro.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="99" selection-start-line="8" selection-start-column="99" selection-end-line="8" selection-end-column="157" />
+        <state relative-caret-position="180">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Quizz.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="80" selection-start-line="18" selection-start-column="80" selection-end-line="18" selection-end-column="80" />
+          <folding>
+            <marker date="1542819093454" expanded="true" signature="1208:1694" placeholder="SELECT * FRO... cpt" />
+            <marker date="1542819093454" expanded="true" signature="1230:1666" placeholder="SELECT (@cpt... SUM" />
+            <marker date="1542819093454" expanded="true" signature="1298:1646" placeholder="SELECT SUM(s... question_user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/QuizzController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="89" column="68" selection-start-line="89" selection-start-column="68" selection-end-line="89" selection-end-column="68" />
           <folding />
         </state>
       </provider>

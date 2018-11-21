@@ -86,6 +86,9 @@ class QuizzController extends Controller
     public function update(Requests\QuizzRequest $request, $id)
     {
         $quizz = Quizz::findOrFail($id);
+        if (!Quizz::urlIsUnique($quizz,$request->get('url'))) {
+            $request->merge(array('url' => $request->get('url').'-'.$quizz->id));
+        }
         $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' , 'comment' , 'url' ) );
         Question::saveQuestions($request->only('question'));
         Answer::saveAnswers($request->only('answer'));
