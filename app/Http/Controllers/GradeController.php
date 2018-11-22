@@ -38,7 +38,14 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $template = Template::findOrFail($request->get('template_id'));
+        $grade = Grade::create(array('template_id' => $request->get('template_id')));
+        $html = view('templates.show-grade' , compact('grade','template'))->render();
+        return response()->json(
+            array(
+                'html'      => $html
+            )
+        );
     }
 
     /**
@@ -83,7 +90,15 @@ class GradeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $grade = Grade::findOrFail($id);
+        $grade->delete();
+
+        return response()->json(
+            array(
+                'state'=> 1,
+                'id' => $id
+            )
+        );
     }
     
     public function liste($template_id)

@@ -35,7 +35,7 @@
     <div class="row">
         <div class="form-group">
             <div class="col-md-12">
-                <button type="button" class="btn btn-secondary add-grade" data-link="{{ action('GradeController@store') }}">
+                <button type="button" class="btn btn-secondary add-grade" data-link="{{ action('GradeController@store') }}" data-template="{{ $template->id }}">
                     <i class="fa fa-fw fa-save"></i>Nouveau grade
                 </button>
             </div>

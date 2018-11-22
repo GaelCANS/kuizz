@@ -67,6 +67,25 @@ $(document).ready(function(){
         stop: refreshQuestionOrder,
     });
 
+
+
+    /**
+     * Template - grade
+     */
+    $('.add-grade').on('click' , function () {
+        addGrade($(this))
+    })
+
+
+    /**
+     * Template - grade
+     */
+    $('#container-grades').on('click' , '.del-grade' , function () {
+        if(confirm("Voulez-vous supprimer ce grade ?")) {
+            deleteGrade($(this))
+        }
+    })
+
 });
 
 
@@ -230,5 +249,55 @@ function addAnswer(obj)
                 placeholder: "ui-state-highlight",
                 stop: refreshQuestionOrder,
             });
+        })
+}
+
+/**
+ * Template- grade
+ */
+function addGrade(obj)
+{
+    var link = obj.data('link')
+    var id = obj.data('template')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "POST",
+            url: link,
+            data: {template_id:id}
+        })
+        .done(function( data ) {
+            $('#container-grades').append(data.html)
+        })
+}
+
+
+
+/**
+ * Template- grade
+ */
+function deleteGrade(obj)
+{
+    var link = obj.data('link')
+    var id = obj.data('grade')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "DELETE",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            removeItem($('#grade-'+data.id))
         })
 }
