@@ -76,6 +76,33 @@ class Quizz extends Model
     }
 
     /**
+     * Return top ranking
+     *
+     * @param $nb
+     * @param $page
+     * @param $quizz
+     * @return collection
+     */
+    public static function top($nb, $page,$quizz)
+    {
+        $from = $page > 0 ? $page*$nb : 0;
+
+        return DB::table('question_user AS au')
+            ->select(
+                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree')
+            )
+            ->join('users AS u','u.id','=','au.user_id')
+            ->where('u.quizz_id','=',$quizz->id)
+            ->where("u.finished_at", "!=", "0000-00-00 00:00:00")
+            ->groupBy('user_id')
+            ->orderBy('total' , 'desc')
+            ->orderBy('duree' , 'asc')
+            ->offset($from)
+            ->limit($nb)
+            ->get();
+    }
+
+    /**
      * Return users number
      *
      * @param $quizz

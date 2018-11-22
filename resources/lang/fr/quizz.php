@@ -8,6 +8,7 @@ return array(
         "end"               => "Fin de la rando",
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",
+        "participants"      => "Nombre de participants",
     ),
 
     "montagne" => array(
@@ -17,6 +18,7 @@ return array(
         'fin-epreuve'       => "Fin de la descente",
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",
+        "participants"      => "Nombre de participants",
     ),
 
     "assurance" => array(
@@ -44,6 +46,7 @@ return array(
         'fin-epreuve'       => "Fin de l'épreuve",
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",
+        "participants"      => "Nombre de participants",
     ),
 
 );

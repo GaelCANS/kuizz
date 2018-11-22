@@ -234,4 +234,19 @@ class QuizzController extends Controller
 
         return view('quizz.end' , compact('quizz' , 'score' , 'duree' , 'user' , 'rank' , 'participants' , 'grade'));
     }
+
+    public function podium($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+
+        $participants = Quizz::participants($quizz);
+        $tops = Quizz::top(10,0,$quizz);
+        $ids = array_column($tops,'id');
+
+        return view('quizz.podium' , compact('quizz','participants','tops','ids'));
+    }
+
 }

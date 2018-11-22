@@ -114,6 +114,8 @@ Route::group(['prefix' => '/'], function() {
     Route::post('/{name}/question', 'QuizzController@answered')->name('answer-quizz');
     // Quizz - end
     Route::get('/{name}/end', 'QuizzController@end')->name('end-quizz');
+    // Quizz - podium
+    Route::get('/{name}/podium', 'QuizzController@podium')->name('podium-quizz');
 
 });
 
