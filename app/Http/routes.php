@@ -66,6 +66,16 @@ Route::group(['middleware' => 'auth'], function () {
             )
         );
 
+
+        // Grade
+        Route::resource(
+            'template_grade',
+            'GradeController'
+        );
+        Route::get('grade/{template_id}', 'GradeController@liste')->name('list-grade');
+        Route::post('grades/{template_id}', 'GradeController@updates')->name('update-grades');
+
+
         // User
         Route::resource(
             'users',

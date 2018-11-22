@@ -1,7 +1,10 @@
 @extends('backoff.app')
 
 @section('content')
-
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Template</a></li>
+        <li @if($template == null) class="disabled" @endif><a href="@if($template != null) {{route('list-grade' , array('list-grade' => $template->id))}} @endif">Grades</a></li>
+    </ul>
 
     <h4 class="page-title d-inline-block mr-2">
         @if( $template == null ) Création @else Édition @endif d'un template @if( $template != null ) @endif
@@ -57,11 +60,9 @@
         </div>
     </div>
 
-    </div>
-
     {!! Form::close() !!}
 
-    </div>
+
 
 
 
