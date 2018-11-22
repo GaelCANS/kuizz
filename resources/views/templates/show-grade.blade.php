@@ -6,6 +6,7 @@
 
                 {!! Form::text( 'grade['.$grade->id.'][name]' , $grade->name , array( 'class' => 'form-control' , 'placeholder' => "Le nom du grade" ) ) !!}
                 {!! Form::text( 'grade['.$grade->id.'][step]' , $grade->step , array( 'class' => 'form-control' , 'placeholder' => "Pourentage d'atteinte" ) ) !!}
+                {!! Form::text( 'grade['.$grade->id.'][comment]' , $grade->comment , array( 'class' => 'form-control' , 'placeholder' => "Commentaire" ) ) !!}
 
                 <button type="button" class="btn btn-outline-secondary icon-btn del-grade" data-grade="{{$grade->id}}"  data-link="{{action('GradeController@destroy' , array('id' => $grade->id))}}"><i class="mdi mdi-delete"></i></button>
 

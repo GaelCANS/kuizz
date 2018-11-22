@@ -5,13 +5,18 @@ return array(
     "rando" => array(
         "btn-start" => '',
         "next"              => "Sentier suivant",
-        "end"               => "Fin de la rando"
+        "end"               => "Fin de la rando",
+        "niveau"            => "Votre niveau",
+        "classement"        => "Classement",
     ),
 
     "montagne" => array(
         "btn-start" => '',
         "next"              => "Piste suivante",
-        "end"               => "Fin de la descente"
+        "end"               => "Fin de la descente",
+        'fin-epreuve'       => "Fin de la descente",
+        "niveau"            => "Votre niveau",
+        "classement"        => "Classement",
     ),
 
     "assurance" => array(
@@ -35,7 +40,10 @@ return array(
         "comment-4"         => "Pansement",
         "comment-5"         => "Muscle",
         "comment-6"         => "Biscotto d'or",
-        'go-again'          => "On recommande ?"
+        'go-again'          => "On recommande ?",
+        'fin-epreuve'       => "Fin de l'épreuve",
+        "niveau"            => "Votre niveau",
+        "classement"        => "Classement",
     ),
 
 );

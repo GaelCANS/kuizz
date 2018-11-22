@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Grade;
 use App\Question;
 use App\Quizz;
 use App\Template;
@@ -229,8 +230,8 @@ class QuizzController extends Controller
         $duree = Quizz::duree(session('user'));
         $rank = Quizz::rank($user);
         $participants = Quizz::participants($quizz);
+        $grade = Grade::getGrade($quizz->template, round(($score*100)/$quizz->questions->count()) );
 
-
-        return view('quizz.end' , compact('quizz' , 'score' , 'duree' , 'user' , 'rank' , 'participants'));
+        return view('quizz.end' , compact('quizz' , 'score' , 'duree' , 'user' , 'rank' , 'participants' , 'grade'));
     }
 }

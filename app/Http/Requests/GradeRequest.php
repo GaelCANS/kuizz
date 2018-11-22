@@ -29,6 +29,7 @@ class GradeRequest extends Request
             foreach ($this->input('grade') as $item => $grade) {
                 $rules["grade.{$item}.name"]       = array('required','string');
                 $rules["grade.{$item}.step"]       = array('required' ,'string');
+                $rules["grade.{$item}.comment"]    = array('string');
             }
         }
 

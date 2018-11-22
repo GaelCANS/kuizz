@@ -41,12 +41,6 @@ class Quizz extends Model
         return $user->created_at->diffInSeconds($user->finished_at);
     }
 
-
-    public static function grade()
-    {
-
-    }
-
     /**
      * Return user's rank
      *
