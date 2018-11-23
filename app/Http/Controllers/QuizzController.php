@@ -249,4 +249,25 @@ class QuizzController extends Controller
         return view('quizz.podium' , compact('quizz','participants','tops','ids'));
     }
 
+    public function reloadPodium($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+
+        $participants = Quizz::participants($quizz);
+        $tops = Quizz::top(10,0,$quizz);
+        $ids = array_column($tops,'id');
+
+        $html = view('quizz.podium-list' , compact('tops','quizz'))->render();
+        return response()->json(
+            array(
+                'html'          => $html,
+                'ids'           => $ids,
+                'participants'  => $participants
+            )
+        );
+    }
+
 }

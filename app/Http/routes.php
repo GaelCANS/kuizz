@@ -116,6 +116,8 @@ Route::group(['prefix' => '/'], function() {
     Route::get('/{name}/end', 'QuizzController@end')->name('end-quizz');
     // Quizz - podium
     Route::get('/{name}/podium', 'QuizzController@podium')->name('podium-quizz');
+    // Quizz - reload podium
+    Route::post('/{name}/reload/podium', 'QuizzController@reloadPodium')->name('reload-podium-quizz');
 
 });
 
