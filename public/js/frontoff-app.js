@@ -8,6 +8,13 @@ $(document).ready(function(){
         reloadPodium()
     }
 
+    /**
+     * Quizz
+     */
+    if ($('#getting-started').length > 0) {
+        timer()
+    }
+
 });
 
 
@@ -61,4 +68,45 @@ function reloadPodium()
     })
 
     setTimeout(reloadPodium,9000);
+}
+
+/**
+ * Question
+ */
+function timer()
+{
+    // Création de la date à J+30 secondes
+    var futur=new Date()
+    var timer = $('#getting-started').data('time')
+
+    if (timer > 0) {
+        futur.setSeconds(futur.getSeconds() + timer)
+
+        // Création de la date au format attendu
+        var timerEnd =
+            futur.getFullYear().toString() +
+            '/' +
+            (futur.getMonth() + 1) +
+            '/' +
+            _.pad(futur.getDate(), 2, '0') +
+            ' ' +
+            _.pad(futur.getHours(), 2, '0') +
+            ':' +
+            _.pad(futur.getMinutes(), 2, '0') +
+            ':' +
+            _.pad(futur.getSeconds(), 2, '0')
+
+        // Init du compte à rebours
+        $("#getting-started")
+            .countdown(timerEnd, function (event) {
+                    $(this).text(
+                        event.strftime('%S')
+                    )
+                }
+            )
+
+        $("#getting-started").on('finish.countdown', function () {
+            $('#quizz-form').submit();
+        })
+    }
 }

@@ -7,7 +7,8 @@
         array(
             'class'     => 'form-horizontal',
             'url'       => action('QuizzController@answered' , $quizz->url),
-            'method'    => 'Post'
+            'method'    => 'Post',
+            'id'        => 'quizz-form'
         )
     ) !!}
 
