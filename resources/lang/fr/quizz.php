@@ -47,6 +47,8 @@ return array(
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",
         "participants"      => "Nombre de participants",
+        'single-response'   => "1 bonne réponse par question",
+        'multi-response'    => "plusieurs réponses possibles",
     ),
 
 );

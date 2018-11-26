@@ -14,7 +14,7 @@
             <dd>@if ($quizz->timing > 0) {{$quizz->timing}} secondes par question, pas une de plus ! @else Prenez votre temps, c'est cadeau @endif</dd>
         </dl>
         <dl>
-            <dt>1 ou plusieurs réponses par question</dt>
+            <dt>@if ($quizz->single_response == 0) {{ trans('quizz.'.$quizz->template->texts.'.single-response') }} @else {{ trans('quizz.'.$quizz->template->texts.'.multi-response') }} @endif</dt>
             <dd>stay focus</dd>
         </dl>
         <dl style="margin-bottom:5px!important;">

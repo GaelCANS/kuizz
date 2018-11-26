@@ -9,7 +9,7 @@
         <span class="pins"><img src="{{ URL::to('/') }}/img/{{$quizz->template->texts}}/{{$grade->slug}}.jpg" width="100px"></span>
 
         @if ($grade->comment != "")
-            <span class="results-level" style="padding-left: 80px; padding-right: 80px;">{{$grade->comment}}</span>
+            <span class="results-level" style="padding-left: 80px; padding-right: 80px;">{!! $grade->comment !!}</span>
         @endif
         <div class="results-text white-shadow">
             <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:30px;text-shadow: 2px 2px 0px #fff;"></i>&nbsp; {{ trans('quizz.'.$quizz->template->texts.'.classement') }} : <span class="results-perf">{{$rank[0]->increment}}/{{$participants}}</span><br>

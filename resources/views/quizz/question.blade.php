@@ -35,7 +35,7 @@
                                     <div class="well well-sm">
                                         <div class="checkbox">
                                             <label class="@if ($answer->good) oooooook @endif">
-                                                <input type="checkbox" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
+                                                <input type="@if ($quizz->single_response == 0){{"radio"}}@else{{"checkbox"}}@endif" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
                                                 <?= utf8_encode( $answer['wording'] ) ?>
                                                 <span class="icon-result glyphicon glyphicon-<?php echo $answer['is_good'] == '1' ? 'ok' : 'remove' ?>"></span>
                                             </label>
