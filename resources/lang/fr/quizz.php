@@ -42,7 +42,7 @@ return array(
         "comment-4"         => "Pansement",
         "comment-5"         => "Muscle",
         "comment-6"         => "Biscotto d'or",
-        'go-again'          => "On recommande ?",
+        'go-again'          => "On recommence ?",
         'fin-epreuve'       => "Fin de l'épreuve",
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",

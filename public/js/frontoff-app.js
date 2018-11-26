@@ -15,6 +15,27 @@ $(document).ready(function(){
         timer()
     }
 
+    /**
+     * Quizz
+     */
+    $('#quizz-form').on('submit', function (e) {
+        var form = this
+        $('#submit-form-btn').attr('disabled' , true)
+        e.preventDefault()
+        if ($('#quizz-form').data('dr') == 1) {
+            var mdl = $(this).data('mod');
+            $('.question-answer').each(function () {
+                $(this).addClass( ($(this).data('sr')%mdl == 0) ? "oooook" : "kooooo" )
+            })
+            setTimeout(function () {
+                form.submit()
+            }, 1500)
+        }
+        else {
+            form.submit()
+        }
+    } )
+
 });
 
 

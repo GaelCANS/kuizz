@@ -8,7 +8,9 @@
             'class'     => 'form-horizontal',
             'url'       => action('QuizzController@answered' , $quizz->url),
             'method'    => 'Post',
-            'id'        => 'quizz-form'
+            'id'        => 'quizz-form',
+            'data-dr'   => $quizz->display_responses,
+            'data-mod'  => $modulo
         )
     ) !!}
 
@@ -34,7 +36,7 @@
 
                                     <div class="well well-sm">
                                         <div class="checkbox">
-                                            <label class="@if ($answer->good) oooooook @endif">
+                                            <label class="question-answer" @if ($quizz->display_response == 0) data-sr="@if ($answer->good){{22*$modulo}}@else{{22*$modulo+1}}@endif" @endif>
                                                 <input type="@if ($quizz->single_response == 0){{"radio"}}@else{{"checkbox"}}@endif" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
                                                 <?= utf8_encode( $answer['wording'] ) ?>
                                                 <span class="icon-result glyphicon glyphicon-<?php echo $answer['is_good'] == '1' ? 'ok' : 'remove' ?>"></span>

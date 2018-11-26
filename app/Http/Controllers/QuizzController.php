@@ -176,7 +176,8 @@ class QuizzController extends Controller
         $question = session('question');
         if ($question != null) {
             $question->load('Answers');
-            return view('quizz.question' , compact('quizz' , 'question'));
+            $modulo = rand(91,98);
+            return view('quizz.question' , compact('quizz' , 'question' , 'modulo'));
         }
 
         return redirect(action('QuizzController@end' , array('name' => $quizz->url)));
