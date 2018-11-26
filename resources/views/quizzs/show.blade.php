@@ -63,6 +63,50 @@
     </div>
 
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Limiter le quizz aux collaborateurs</h6>
+
+                <div class="col-lg-10">
+                    <div class="radio">
+                        {!! Form::label('ca_only-1', 'Oui', ['class' => '']) !!}
+                        {!! Form::radio('ca_only', '1', null , ['id' => 'ca_only-1']) !!}
+
+                    </div>
+                    <div class="radio">
+                        {!! Form::label('ca_only-0', 'Non', ['class' => '']) !!}
+                        {!! Form::radio('ca_only', '0', null , ['id' => 'ca_only-0']) !!}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Autoriser plusieurs participations</h6>
+
+                <div class="col-lg-10">
+                    <div class="radio">
+                        {!! Form::label('regame-1', 'Oui', ['class' => '']) !!}
+                        {!! Form::radio('regame', '1', null , ['id' => 'regame-1']) !!}
+
+                    </div>
+                    <div class="radio">
+                        {!! Form::label('regame-0', 'Non', ['class' => '']) !!}
+                        {!! Form::radio('regame', '0', null , ['id' => 'regame-0']) !!}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <div class="d-inline-block status">
         {!! Form::select('template_id',$templates , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}
     </div>

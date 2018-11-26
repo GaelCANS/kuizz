@@ -72,7 +72,9 @@ class QuizzRequest extends Request
             'comment'        => 'string',
             "template_id"    => "required|exists:templates,id",
             'timing'         => 'integer',
-            'single_rseponse'=> 'boolean'
+            'single_rseponse'=> 'boolean',
+            'ca_only'        => 'boolean',
+            'regame'         => 'boolean'
         );
     }
 }

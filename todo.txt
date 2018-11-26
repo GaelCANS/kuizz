@@ -1,0 +1,9 @@
+ - limiter le quizz aux adresses mails du CA
+ - limiter le quizz à une seule participation
+ - interface de résultats
+ - interface admin des participants/résultats
+ - interface admin des statistiques
+ - bouton pour envoie des réponses et des diplômes
+ - graphisme
+ - traductions
+ - podium sur plusieurs pages

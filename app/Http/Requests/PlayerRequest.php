@@ -25,7 +25,7 @@ class PlayerRequest extends Request
     {
         $return = array(
             'name'          => 'required|string',
-            'email'         => 'required|email'
+            'email'         => 'required|email'.(session('quizz')->ca_only ? '|regex:^[a-z0-9](\.?[a-z0-9]){5,}@ca-normandie-seine\.fr$^' : '')
         );
 
         return $return;

@@ -91,7 +91,7 @@ class QuizzController extends Controller
             $request->merge(array('url' => $request->get('url').'-'.$quizz->id));
         }
         
-        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' , 'comment' , 'url' , 'display_responses' , 'single_response' ) );
+        $quizz->update( $request->except( 'question' , 'answer' ) );
         Question::saveQuestions($request->only('question'));
         Answer::saveAnswers($request->only('answer'));
 
@@ -142,6 +142,7 @@ class QuizzController extends Controller
         $quizz = Quizz::whereUrl($name)->first();
         if ($quizz == null) return view('errors.404');
 
+        session( array('quizz' => $quizz ) );
         $quizz->load('Template');
 
         return view('quizz.player' , compact('quizz'));
@@ -152,11 +153,12 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::whereUrl($name)->first();
         if ($quizz == null) return view('errors.404');
-
+dd('good');
         $datas = $request->all();
         $datas['quizz_id'] = $quizz->id;
         $user = User::create($datas);
         $question = Question::where('quizz_id',$quizz->id)->notdeleted()->whereOrder(1)->first();
+        session()->forget('quizz');
         session( array('user' => $user , 'question' => $question ) );
 
         return redirect(action('QuizzController@question' , array('name' => $quizz->url)));
