@@ -68,10 +68,11 @@ class QuizzRequest extends Request
     private function quizzRules()
     {
         return array(
-            'name'          => 'required|string',
-            'comment'       => 'string',
-            "template_id"   => "required|exists:templates,id",
-            'timing'        => 'integer'
+            'name'           => 'required|string',
+            'comment'        => 'string',
+            "template_id"    => "required|exists:templates,id",
+            'timing'         => 'integer',
+            'single_rseponse'=> 'boolean'
         );
     }
 }

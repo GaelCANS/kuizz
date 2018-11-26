@@ -90,7 +90,8 @@ class QuizzController extends Controller
         if (!Quizz::urlIsUnique($quizz,$request->get('url'))) {
             $request->merge(array('url' => $request->get('url').'-'.$quizz->id));
         }
-        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' , 'comment' , 'url' ) );
+        
+        $quizz->update( $request->only( 'name' , 'template_id' , 'user_id' , 'timing' , 'comment' , 'url' , 'display_responses' , 'single_response' ) );
         Question::saveQuestions($request->only('question'));
         Answer::saveAnswers($request->only('answer'));
 

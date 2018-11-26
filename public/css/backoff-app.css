@@ -15611,7 +15611,7 @@ pre {
     transition: all 0.2s ease;
 }
 input[type=radio] {
-    display: none;
+    /*display: none;*/
 }
 .switch label {
     cursor: pointer;

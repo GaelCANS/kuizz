@@ -25,6 +25,7 @@
                 <h6>Nom du quizz</h6>
                 {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" , 'id' => 'name-quizz') ) !!}
                 {!! Form::hidden( 'url' , null , array( 'class' => 'form-control' , 'id' => 'url-quizz' , 'data-empty' => '' ) ) !!}
+                {!! Form::hidden( 'single_response' , null , array( 'class' => 'form-control' , 'id' => 'single_reponse-quizz' , 'data-empty' => '' ) ) !!}
             </div>
         </div>
     </div>
@@ -38,6 +39,29 @@
             </div>
         </div>
     </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <h6>Affichage des réponses <small>(la bonne réponse est affichée immédiatement après la validation)</small></h6>
+
+                <div class="col-lg-10">
+                    <div class="radio">
+                        {!! Form::label('display_responses-1', 'Oui', ['class' => '']) !!}
+                        {!! Form::radio('display_responses', '1', null , ['id' => 'display_responses-1']) !!}
+
+                    </div>
+                    <div class="radio">
+                        {!! Form::label('display_responses-0', 'Non', ['class' => '']) !!}
+                        {!! Form::radio('display_responses', '0', null , ['id' => 'display_responses-0']) !!}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 
     <div class="d-inline-block status">
         {!! Form::select('template_id',$templates , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}

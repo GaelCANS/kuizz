@@ -16,12 +16,12 @@
         <div class="col-lg-10">
             <div class="radio">
                 {!! Form::label('good1-'.$answer->id, 'Oui', ['class' => '']) !!}
-                {!! Form::radio('answer[update]['.$answer->id.'][good]', '1', ($answer->good == 1) , ['id' => 'good1-'.$answer->id]) !!}
+                {!! Form::radio('answer[update]['.$answer->id.'][good]', '1', ($answer->good == 1) , ['id' => 'good1-'.$answer->id , 'class' => 'radio-answer']) !!}
 
             </div>
             <div class="radio">
                 {!! Form::label('good0-'.$answer->id, 'Non', ['class' => '']) !!}
-                {!! Form::radio('answer[update]['.$answer->id.'][good]', '0', ($answer->good == 0), ['id' => 'good0-'.$answer->id]) !!}
+                {!! Form::radio('answer[update]['.$answer->id.'][good]', '0', ($answer->good == 0), ['id' => 'good0-'.$answer->id , 'class' => 'radio-answer']) !!}
             </div>
         </div>
     </div>

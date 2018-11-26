@@ -86,6 +86,17 @@ $(document).ready(function(){
         }
     })
 
+
+    /**
+     * Quizz - quizz
+     */
+    singleResponse()
+
+    $('.item-answer').on('change' , '.radio-answer' , function () {
+        singleResponse()
+    })
+
+
 });
 
 
@@ -300,4 +311,17 @@ function deleteGrade(obj)
         .done(function( data ) {
             removeItem($('#grade-'+data.id))
         })
+}
+
+/**
+ * Quizz - quizz
+ */
+function singleResponse()
+{
+    $('#single_reponse-quizz').val(0);
+    $('.container-answers').each(function(){
+        if ($(this).find('input[type="radio"][value="1"]:checked').length > 1) {
+            $('#single_reponse-quizz').val(1);
+        }
+    })
 }
