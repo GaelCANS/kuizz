@@ -153,7 +153,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::whereUrl($name)->first();
         if ($quizz == null) return view('errors.404');
-dd('good');
+
         $datas = $request->all();
         $datas['quizz_id'] = $quizz->id;
         $user = User::create($datas);

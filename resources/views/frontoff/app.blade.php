@@ -13,6 +13,7 @@
             @include('frontoff.side')
 
             <div class="content-wrapper">
+                @include('flash.front')
 
                 @yield('content')
             </div>
