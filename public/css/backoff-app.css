@@ -22256,3 +22256,10 @@ div.tagsinput span.tag a {
     font-family: "Montserrat", sans-serif; }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+.good {
+    color: green;
+}
+.wrong {
+    color: red;
+}

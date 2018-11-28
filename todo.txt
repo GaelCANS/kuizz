@@ -1,5 +1,3 @@
- - limiter le quizz aux adresses mails du CA
- - limiter le quizz à une seule participation
  - interface de résultats
  - interface admin des participants/résultats
  - interface admin des statistiques

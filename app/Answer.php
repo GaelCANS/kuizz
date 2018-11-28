@@ -4,6 +4,7 @@ namespace App;
 
 use App\Library\Traits\Scopable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Answer extends Model
 {
@@ -23,6 +24,12 @@ class Answer extends Model
                 $answer->update($answer_datas);
             }
         }
+    }
+
+
+    public static function hasAnswered($answer_id,$user_id)
+    {
+        return DB::table('answer_user')->whereAnswerId($answer_id)->whereUserId($user_id)->count() > 0 ? true : false;
     }
 
     // 1 to 1

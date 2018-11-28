@@ -10,6 +10,12 @@
         <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
     </div>
 
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Paramétrage</a></li>
+        <li @if($quizz == null) class="disabled" @endif><a href="@if($quizz != null) {{route('results-quizz' , array('id' => $quizz->id))}} @endif">Résultats</a></li>
+        <li @if($quizz == null) class="disabled" @endif><a href="@if($quizz != null) {{route('stats-quizz' , array('id' => $quizz->id))}} @endif">Statistiques</a></li>
+    </ul>
+
     {!! Form::model(
         $quizz,
         array(

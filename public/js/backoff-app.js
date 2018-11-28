@@ -57,6 +57,20 @@ $(document).ready(function(){
             }
         }
     })
+    
+    $('.user-result').on('click', function () {
+        viewResults($(this))
+    })
+
+    /**
+     * Quizz - results
+     */
+    $("#filter-results").on("keyup", function() {
+        var value = $(this).val().toLowerCase()
+        $(".table tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        })
+    })
 
 
     /**
@@ -284,6 +298,30 @@ function addGrade(obj)
         })
         .done(function( data ) {
             $('#container-grades').append(data.html)
+        })
+}
+
+/**
+ * Quizz - results view
+ */
+function viewResults(obj)
+{
+    var link = obj.data('link')
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "GET",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            $('#results-modal .modal-body').html(data.html)
+            $('#results-modal').modal('show')
         })
 }
 

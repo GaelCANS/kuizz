@@ -32,6 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
                 )
             )
         );
+        // Quizz - résultats
+        Route::get('quizz/results/{id}', 'QuizzController@results')->name('results-quizz');
+        // Quizz - résultats utilisateur
+        Route::get('quizz/results-user/{quizz_id}/{user_id}', 'QuizzController@userResults')->name('results-user-quizz');
+        // Quizz - stats
+        Route::get('quizz/stats/{id}', 'QuizzController@stats')->name('stats-quizz');
 
         // Question
         Route::resource(

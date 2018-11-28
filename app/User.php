@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->name;
     }
 
+    public function getSendedAttribute() {
+        return $this->sended_at == '0000-00-00 00:00:00' ? false : true;
+    }
+
     // many to many
     public function answers()
     {

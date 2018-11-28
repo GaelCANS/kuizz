@@ -124,6 +124,32 @@ class QuizzController extends Controller
     }
 
 
+    public function results($id)
+    {
+        $quizz = Quizz::findOrFail($id);
+        $quizz->load('Users');
+        $users = Quizz::top(100000,0,$quizz);
+
+        return view('quizzs.results' , compact('quizz' , 'users'));
+    }
+
+
+    public function userResults($quizz_id, $user_id)
+    {
+        $quizz = Quizz::findOrFail($quizz_id);
+        $quizz->load('Questions');
+        $user = User::findOrFail($user_id);
+
+        $html = view('quizzs.results-user' , compact('quizz' , 'user'))->render();
+        return response()->json(
+            array(
+                'html'          => $html
+            )
+        );
+
+    }
+
+
     public function rules($name)
     {
         $quizz = Quizz::whereUrl($name)->first();

@@ -89,7 +89,7 @@ class Quizz extends Model
 
         return DB::table('question_user AS au')
             ->select(
-                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree')
+                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , u.sended_at , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree')
             )
             ->join('users AS u','u.id','=','au.user_id')
             ->where('u.quizz_id','=',$quizz->id)
