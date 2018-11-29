@@ -32,6 +32,16 @@ class Answer extends Model
         return DB::table('answer_user')->whereAnswerId($answer_id)->whereUserId($user_id)->count() > 0 ? true : false;
     }
 
+    public static function percentAnswered($answer_id, $question_id)
+    {
+
+        $question = Question::findOrFail($question_id);
+        $question->load('Users');
+        $printed = $question->users()->count();
+        $answered = DB::table('answer_user')->whereAnswerId($answer_id)->count();
+        return round(($answered*100)/$printed);
+    }
+
     // 1 to 1
     public function question() {
         return $this->belongsTo('App\Question');

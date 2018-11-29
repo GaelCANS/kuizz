@@ -146,7 +146,21 @@ class QuizzController extends Controller
                 'html'          => $html
             )
         );
+    }
 
+
+    public function stats($id)
+    {
+        $quizz = Quizz::findOrFail($id);
+        $quizz->load('Questions');
+
+        $participants = Quizz::participants($quizz);
+        $users = Quizz::top(100000,0,$quizz);
+        $best = $users[0]->total;
+        $worst = end($users)->total;
+        $average = round(array_sum(array_column($users,'total'))/count($users),1);
+
+        return view('quizzs.stats' , compact('quizz' , 'best' , 'worst' , 'average' , 'participants'));
     }
 
 

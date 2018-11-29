@@ -53,4 +53,10 @@ class Question extends Model
         return $this->hasMany('App\Answer')->where('delete',0)->orderBy('order' , 'ASC');
     }
 
+    // many to many
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }
