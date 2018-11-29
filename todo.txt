@@ -1,7 +1,7 @@
- - interface de résultats
- - interface admin des participants/résultats
- - interface admin des statistiques
+ - masquer/afficher réponses
  - bouton pour envoie des réponses et des diplômes
  - graphisme
  - traductions
  - podium sur plusieurs pages
+ - neige
+ - feu d'artifice
