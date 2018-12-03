@@ -8,6 +8,9 @@
 
     <div class="float-right">
         <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
+        @if($quizz != null)
+            <a href="{{route('intro-quizz' , array('name' => $quizz->url))}}" target="_blank" class="btn btn-info"><i class="fa fa-angle-left"></i> Voir le quizz</a>
+        @endif
     </div>
 
     <ul class="nav nav-tabs">

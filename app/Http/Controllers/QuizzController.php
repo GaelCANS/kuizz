@@ -152,7 +152,7 @@ class QuizzController extends Controller
         // Save Quizz
         $new_quizz->user_id = auth()->user()->id;
         $new_quizz->name = "[Copie]".$quizz->name;
-        $new_quizz->url = "copie-".$quizz->name;
+        $new_quizz->url = "copie-".$quizz->url;
         $new_quizz->save();
 
         // Save Questions

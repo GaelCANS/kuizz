@@ -3,4 +3,3 @@
  - podium sur plusieurs pages
  - neige
  - feu d'artifice
- - dupliquer quizz
