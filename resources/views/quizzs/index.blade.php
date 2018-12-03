@@ -29,6 +29,7 @@
                                             <th>{{$quizz->template->name}}</th>
                                             <th>
                                                 <a href="{{action("QuizzController@show" , $quizz)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>
+                                                <a href="{{action("QuizzController@duplicate" , $quizz)}}" title="Dupliquer"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-content-copy"></i></button></a>
                                                 <a href="{{action("QuizzController@destroy" , $quizz)}}"  title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-delete"></i></button></a>
                                                 <a href="javascript:;" data-link="{{action("QuizzController@send" , $quizz)}}" class="send-quizz @if ($quizz->sendable == 0) disabled @endif" title="Envoyer les réponses/diplômes" ><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-send"></i></button></a>
                                             </th>

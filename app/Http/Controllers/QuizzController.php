@@ -143,6 +143,41 @@ class QuizzController extends Controller
         }
     }
 
+    public function duplicate($id)
+    {
+        $quizz = Quizz::findOrFail($id);
+        $new_quizz = $quizz->replicate();
+        $quizz->load('Questions');
+
+        // Save Quizz
+        $new_quizz->user_id = auth()->user()->id;
+        $new_quizz->name = "[Copie]".$quizz->name;
+        $new_quizz->url = "copie-".$quizz->name;
+        $new_quizz->save();
+
+        // Save Questions
+        if ($quizz->questions) {
+            foreach ($quizz->questions as $question) {
+                $new_question = $question->replicate();
+                $question->load('Answers');
+                $new_question->quizz_id = $new_quizz->id;
+                $new_question->save();
+
+                // Save Answers
+                if ($question->answers) {
+                    foreach ($question->answers as $answer) {
+                        $new_answer = $answer->replicate();
+                        $new_answer->question_id = $new_question->id;
+                        $new_answer->save();
+                    }
+                }
+            }
+        }
+
+        return redirect()->back()->with('success' , "Le quizz vient d'être dupliqué");
+
+    }
+
 
     public function intro($name)
     {

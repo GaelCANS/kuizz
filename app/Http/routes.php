@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('quizz/stats/{id}', 'QuizzController@stats')->name('stats-quizz');
         // Quizz - send
         Route::post('quizz/send/{id}', 'QuizzController@send')->name('send-quizz');
+        // Quizz - duplicate
+        Route::get('quizz/duplicate/{id}', 'QuizzController@duplicate')->name('duplicate-quizz');
 
         // Question
         Route::resource(

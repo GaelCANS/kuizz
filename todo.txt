@@ -1,8 +1,6 @@
- - bouton pour envoie des réponses et des diplômes
  - graphisme
  - traductions
  - podium sur plusieurs pages
  - neige
  - feu d'artifice
  - dupliquer quizz
- - pop-up de loading pour l'envoi des réponses par mail
