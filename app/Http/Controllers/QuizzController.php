@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Grade;
+use App\Library\Diplome;
 use App\Question;
 use App\Quizz;
 use App\Template;
@@ -12,6 +13,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class QuizzController extends Controller
 {
@@ -22,6 +25,11 @@ class QuizzController extends Controller
      */
     public function index()
     {
+        /*$user = User::findOrFail(22);
+        $quizz= Quizz::findOrFail(4);
+        $diplome = new Diplome($quizz,$user);
+        $diplome->getDiplome();*/
+
         $quizzs = Quizz::notdeleted()->get();
         return view('quizzs.index' , compact('quizzs') );
     }
@@ -90,7 +98,7 @@ class QuizzController extends Controller
         if (!Quizz::urlIsUnique($quizz,$request->get('url'))) {
             $request->merge(array('url' => $request->get('url').'-'.$quizz->id));
         }
-        
+
         $quizz->update( $request->except( 'question' , 'answer' ) );
         Question::saveQuestions($request->only('question'));
         Answer::saveAnswers($request->only('answer'));
@@ -111,8 +119,31 @@ class QuizzController extends Controller
         $quizz->update( array('delete' => 1) );
         return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$name} a bien été supprimé.");
     }
-    
-    
+
+
+    public function send($id)
+    {
+        $quizz = Quizz::findOrFail($id);
+        $quizz->load('Questions');
+        $quizz->load('Template');
+        $users = Quizz::sendableUsers($id);
+        if (count($users)) {
+            foreach ($users as $user) {
+
+                $diplome = new Diplome($quizz, $user);
+                $attachment = $diplome->getDiplome();
+
+                Mail::send('mails.quizz-results', compact('quizz' , 'user'), function ($m) use ($user , $quizz , $attachment) {
+                    $m->from(env('MAIL_EXPEDITOR_MAIL') , env('MAIL_EXPEDITOR_NAME'));
+                    $m->to($user->email)->subject( "Vos réponses au quizz" );
+                    $m->attach($attachment, array('as' => 'mon-diplome'));
+                });
+
+            }
+        }
+    }
+
+
     public function intro($name)
     {
         $quizz = Quizz::whereUrl($name)->first();
@@ -265,7 +296,7 @@ class QuizzController extends Controller
             session('user')->finished_at = Carbon::now();
             session('user')->save();
         }
-        
+
         $quizz->load('Template');
         $quizz->load('Questions');
         $quizz->load('Users');

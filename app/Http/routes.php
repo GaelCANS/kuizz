@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('quizz/results-user/{quizz_id}/{user_id}', 'QuizzController@userResults')->name('results-user-quizz');
         // Quizz - stats
         Route::get('quizz/stats/{id}', 'QuizzController@stats')->name('stats-quizz');
+        // Quizz - send
+        Route::post('quizz/send/{id}', 'QuizzController@send')->name('send-quizz');
 
         // Question
         Route::resource(

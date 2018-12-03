@@ -113,6 +113,17 @@ class Quizz extends Model
         return User::whereQuizzId($quizz->id)->where('finished_at' , '!=','0000-00-00 00:00:00')->count();
     }
 
+    public static function sendableUsers($id)
+    {
+        return User::whereQuizzId($id)->where('sended_at' , '=' , '0000-00-00 00:00:00')->inRandomOrder()->get();
+    }
+
+
+    public function getSendableAttribute()
+    {
+        return count(self::sendableUsers($this->id)) > 0 ? 1 : 0;
+    }
+
 
     // 1 to many
     public function questions()

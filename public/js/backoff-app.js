@@ -110,6 +110,18 @@ $(document).ready(function(){
         singleResponse()
     })
 
+    
+    /**
+     * Quizz - quizz
+     */
+    $('.send-quizz').on('click' , function () {
+        if ( !$(this).hasClass('disabled') ) {
+            if (confirm("Voulez-vous envoyer les réponses et les diplômes aux participants de ce quizz ?")) {
+                sendQuizz($(this))
+            }
+        }
+    })
+
 
 });
 
@@ -362,4 +374,35 @@ function singleResponse()
             $('#single_reponse-quizz').val(1);
         }
     })
+}
+
+/**
+ * Quizz - quizz
+ */
+function sendQuizz(obj)
+{
+    var link = obj.data('link')
+    $('#results-modal').modal('show')
+    $('#results-modal .modal-body').html($('#loading-msg').html())
+    $('#results-modal .modal-title').html("Action en cours")
+    $('#results-modal .modal-footer').hide()
+    $('#results-modal .close').hide()
+    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+
+    $.ajax({
+            method: "POST",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            $('#results-modal .modal-footer').show()
+            $('#results-modal .close').show()
+            console.log('coucou')
+            $('#results-modal').modal('hide')
+        })
 }
