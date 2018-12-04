@@ -1,7 +1,7 @@
 var makeItRain = function() {
     //clear out everything
     $('.rain').empty();
-alert('coucou');
+
     var increment = 0;
     var drops = "";
     var backDrops = "";
