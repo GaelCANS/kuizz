@@ -1,4 +1,4 @@
-@extends('frontoff.app' , array('template' => $quizz->template->stylesheet))
+@extends('frontoff.app' , array('template' => $quizz->template))
 
 @section('content')
 

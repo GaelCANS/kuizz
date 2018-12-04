@@ -27,23 +27,8 @@ class Template extends Model
         return $scripts;
     }
 
-    public function getHtmlEffectAttribute()
+    public function getPodiumCssAttribute()
     {
-        dd();
-        $scripts = array();
-        foreach (glob(public_path().'/js/'.$this->texts.'/*.js') as $filename) {
-            $scripts[] = $this->texts.'/'.basename($filename);
-        }
-        return $scripts;
-
-        switch ($this->texts) {
-            case 'rando':
-            case 'assurances':
-                return $this->texts;
-                break;
-            default:
-                return '';
-                break;
-        }
+        return $this->texts.'/podium-'.$this->texts.'.css';
     }
 }

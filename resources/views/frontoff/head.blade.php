@@ -20,9 +20,12 @@
     <link href="{{ asset('/css/frontoff-app.css') }}?v={{ time() }}" rel="stylesheet">
 
     <!-- Template -->
-    <link href="{{ asset('/css/frontoff-app.css') }}?v={{ time() }}" rel="stylesheet">
-    <link href="{{ asset('/css/'.$template) }}?v=1" rel="stylesheet">
-
-
+    @if (Route::currentRouteName() != 'podium-quizz')
+        <link href="{{ asset('/css/frontoff-app.css') }}?v={{ time() }}" rel="stylesheet">
+        <link href="{{ asset('/css/'.$template->stylesheet) }}?v=1" rel="stylesheet">
+    @else
+        <link href="{{ asset('/css/podium.css') }}?v={{ time() }}" rel="stylesheet">
+        <link href="{{ asset('/css/'.$template->podiumCss) }}?v=1" rel="stylesheet">
+    @endif
 
 </head>
