@@ -1,5 +1,1 @@
- - graphisme
- - traductions
  - podium sur plusieurs pages
- - neige
- - feu d'artifice

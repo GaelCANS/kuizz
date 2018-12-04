@@ -47,7 +47,7 @@
         width: 1px;
         height: 60%;
         margin-left: 7px;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.75));
         animation: stem 0.5s linear infinite;
     }
 
