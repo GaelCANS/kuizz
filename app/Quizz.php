@@ -137,6 +137,12 @@ class Quizz extends Model
         return $this->hasMany('App\User');
     }
 
+    // many to 1
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     // 1 to 1
     public function template()
     {

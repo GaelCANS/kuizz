@@ -31,6 +31,7 @@ class QuizzController extends Controller
         $diplome->getDiplome();*/
 
         $quizzs = Quizz::notdeleted()->get();
+        $quizzs->load('User');
         return view('quizzs.index' , compact('quizzs') );
     }
 
