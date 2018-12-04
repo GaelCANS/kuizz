@@ -1,4 +1,4 @@
-@extends('mails.layout')
+@extends('mails.layout' , array('template' => $quizz->template))
 
 @section('content')
 

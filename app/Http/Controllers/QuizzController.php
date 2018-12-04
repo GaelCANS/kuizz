@@ -56,7 +56,7 @@ class QuizzController extends Controller
     public function store(Requests\QuizzRequest $request)
     {
         $quizz = Quizz::create( $request->all() );
-        return redirect()->back()->with('success' , "Le quizz vient d'être ajouté");
+        return redirect()->route('quizz-show' , array('id' => $quizz->id) )->with('success' , "Le quizz vient d'être ajouté");
     }
 
     /**
@@ -116,7 +116,7 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::findOrFail($id);
         $name = $quizz->name;
-        $quizz->update( array('delete' => 1) );
+        $quizz->update( array('delete' => 1, 'url' => "") );
         return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$name} a bien été supprimé.");
     }
 
@@ -138,6 +138,7 @@ class QuizzController extends Controller
                     $m->to($user->email)->subject( "Vos réponses au quizz" );
                     $m->attach($attachment, array('as' => 'mon-diplome'));
                 });
+                dd('stop');
 
             }
         }

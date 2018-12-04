@@ -28,7 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
             'QuizzController' ,
             array(
                 'names' => array(
-                    'index' => 'quizz-index'
+                    'index' => 'quizz-index',
+                    'show'  => 'quizz-show'
                 )
             )
         );
