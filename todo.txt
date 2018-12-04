@@ -1,1 +1,4 @@
  - podium sur plusieurs pages
+ - pagination index quizz
+ - moteur de recherche
+ - système de droits sur un quizz

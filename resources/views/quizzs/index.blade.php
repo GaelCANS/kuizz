@@ -46,6 +46,16 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="float-right">
+                <ul id="tab" class="pagination">
+                    {!! str_replace( '/?' , '?' , $quizzs->appends(\Illuminate\Support\Facades\Input::except('page'))->render() ) !!}
+                </ul>
+            </nav>
+        </div>
+    </div>
+
     <div  id="loading-msg" style="display:none;">
         <div class="text-center" >
             <img src="{{URL::to('/')}}/img/ajax-loader.gif" alt="">

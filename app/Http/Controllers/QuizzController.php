@@ -30,7 +30,7 @@ class QuizzController extends Controller
         $diplome = new Diplome($quizz,$user);
         $diplome->getDiplome();*/
 
-        $quizzs = Quizz::notdeleted()->get();
+        $quizzs = Quizz::notdeleted()->paginate(20);
         $quizzs->load('User');
         return view('quizzs.index' , compact('quizzs') );
     }
