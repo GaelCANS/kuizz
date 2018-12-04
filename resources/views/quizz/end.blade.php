@@ -22,5 +22,10 @@
         <a class="btn btn-primary" href="{{route('intro-quizz' , array('name' => $quizz->url))}}">{{ trans('quizz.'.$quizz->template->texts.'.go-again') }}</a>
     </div>
 
+    @include('effect.html')
 
+@endsection
+
+@section('content_after')
+    @include('effect.scripts')
 @endsection

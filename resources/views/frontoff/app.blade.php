@@ -26,6 +26,7 @@
 
 
 @include('frontoff.foot')
+@yield('content_after')
 
 </body>
 </html>
