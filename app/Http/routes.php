@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
                 )
             )
         );
+        // Quizz - filter
+        Route::post('quizz/filter', 'QuizzController@filter')->name('filter-quizz');
+        // Quizz - clear filter
+        Route::get('quizz/filter/clear', 'QuizzController@clearfilter')->name('clear-filter-quizz');
         // Quizz - résultats
         Route::get('quizz/results/{id}', 'QuizzController@results')->name('results-quizz');
         // Quizz - résultats utilisateur

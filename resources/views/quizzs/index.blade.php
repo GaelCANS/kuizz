@@ -3,6 +3,8 @@
 @section('content')
 
     <h4 class="page-title d-none">Quizz</h4>
+    @include('quizzs.search')
+
     <a href="{{action('QuizzController@create')}}"><button type="button" class="btn btn-secondary btn-xs mb-2" title="Ajouter">+ Ajouter un quizz</button></a>
 
     <div class="row">

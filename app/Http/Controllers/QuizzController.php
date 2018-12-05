@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class QuizzController extends Controller
 {
@@ -25,14 +26,25 @@ class QuizzController extends Controller
      */
     public function index()
     {
-        /*$user = User::findOrFail(22);
-        $quizz= Quizz::findOrFail(4);
-        $diplome = new Diplome($quizz,$user);
-        $diplome->getDiplome();*/
+        $data = $request = (object)\Cookie::get('filter');
+        //\Cookie::queue(\Cookie::forget('filter'));
 
-        $quizzs = Quizz::notdeleted()->paginate(20);
+        $quizzs = Quizz::notdeleted()->filter($request)->paginate(20);
         $quizzs->load('User');
-        return view('quizzs.index' , compact('quizzs') );
+        $users = User::whereDelete('0')
+            ->whereAdmin('1')
+            ->orderBy('name' , 'ASC')
+            ->pluck('name' , 'id')
+            ->toArray();
+        $users[0]=   'Tous';
+        ksort($users);
+
+        /*$data = array(
+            'user'     => !empty($request->user) ? array_map('intval' , $request->user ) : array(0),
+            'keywords' => !empty($request->keywords) ? $request->keywords : '',
+        );*/
+
+        return view('quizzs.index' , compact('quizzs' , 'users' , 'data') );
     }
 
     /**
@@ -121,6 +133,29 @@ class QuizzController extends Controller
         return redirect(action('QuizzController@index'))->with('success' , "Le quizz {$name} a bien été supprimé.");
     }
 
+    /**
+     * Save filter
+     *
+     * @param Request $request
+     */
+    public function filter(Request $request)
+    {
+        \Cookie::queue('filter' , $request->all());
+        return redirect(action('QuizzController@index'));
+    }
+
+
+    /**
+     * Clear filter
+     *
+     * @param Request $request
+     */
+    public function clearfilter()
+    {
+        \Cookie::queue(\Cookie::forget('filter'));
+        return redirect(action('QuizzController@index'));
+    }
+
 
     public function send($id)
     {
@@ -139,8 +174,6 @@ class QuizzController extends Controller
                     $m->to($user->email)->subject( "Vos réponses au quizz" );
                     $m->attach($attachment, array('as' => 'mon-diplome'));
                 });
-                dd('stop');
-
             }
         }
     }

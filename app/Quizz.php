@@ -118,6 +118,29 @@ class Quizz extends Model
         return User::whereQuizzId($id)->where('sended_at' , '=' , '0000-00-00 00:00:00')->inRandomOrder()->get();
     }
 
+    public function scopeFilter($query, $datas)
+    {
+        // Keywords
+        if (!empty($datas->keywords)) {
+
+            $keywords = trim($datas->keywords);
+            $query->where( function ($q) use ($keywords) {
+
+                $q->where('name', 'LIKE', '%'.$keywords.'%')
+                    ->orWhere('url', 'LIKE', '%'.$keywords.'%')
+                    ->orWhere('comment', 'LIKE', '%'.$keywords.'%');
+            }
+            );
+        }
+
+        // Users
+        if (!empty($datas->user)) {
+            $query->whereUserId( $datas->user );
+        }
+
+        return $query;
+    }
+
 
     public function getSendableAttribute()
     {
