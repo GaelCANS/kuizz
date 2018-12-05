@@ -84,17 +84,17 @@ class Diplome
     private function texted()
     {
         // txt Date
-        $this->addText(Carbon::now()->format('d/m/Y'),(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-font'),'#ffffff',(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-x'),(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-y'));
+        $this->addText(Carbon::now()->format('d/m/Y'),(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-x'),(int) trans('quizz.'.$this->quizz->template->texts.'.diplome-date-y'));
         // txt Nom
-        $this->addText($this->user->name,46,trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),1010,963);
+        $this->addText($this->user->name,trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-y'));
         // txt Score
         $score = Quizz::score($this->user);
-        $this->addText($score,64,trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),1072,1077);
+        $this->addText($score,trans('quizz.'.$this->quizz->template->texts.'.diplome-score-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-y'));
         // txt Temps
-        $this->addText(Quizz::duree($this->user),64,trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),1007,1150);
+        $this->addText(Quizz::duree($this->user),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-y'));
         // txt Grade
         $this->grade = $grade = Grade::getGrade($this->quizz->template, round(($score*100)/$this->quizz->questions->count()) );
-        $this->addText($grade->name,64,trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),807,797);
+        $this->addText("Votre niveau : ".$grade->name,trans('quizz.'.$this->quizz->template->texts.'.diplome-grade-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-grade-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-grade-y'));
     }
 
     /**
@@ -126,9 +126,9 @@ class Diplome
     private function store()
     {
         // Dossier tmp dans le public_dir - utile pour les tests
-        // $name = public_path().'/tmp/diplome-'.$this->user->id.'.jpg';
+         $name = public_path().'/tmp/diplome-'.$this->user->id.'.jpg';
         // Dossier tmp de laravel
-        $name = sys_get_temp_dir()  .'/diplome-'.$this->user->id.'.jpg';
+        //$name = sys_get_temp_dir()  .'/diplome-'.$this->user->id.'.jpg';
         $this->img->save($name);
         return $name;
     }

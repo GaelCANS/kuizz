@@ -26,8 +26,12 @@ class QuizzController extends Controller
      */
     public function index()
     {
+
+        /*$diplome = new Diplome(Quizz::findOrFail(5), User::findOrFail(27));
+        $attachment = $diplome->getDiplome();*/
+
+
         $data = $request = (object)\Cookie::get('filter');
-        //\Cookie::queue(\Cookie::forget('filter'));
 
         $quizzs = Quizz::notdeleted()->filter($request)->paginate(20);
         $quizzs->load('User');
@@ -38,11 +42,6 @@ class QuizzController extends Controller
             ->toArray();
         $users[0]=   'Tous';
         ksort($users);
-
-        /*$data = array(
-            'user'     => !empty($request->user) ? array_map('intval' , $request->user ) : array(0),
-            'keywords' => !empty($request->keywords) ? $request->keywords : '',
-        );*/
 
         return view('quizzs.index' , compact('quizzs' , 'users' , 'data') );
     }
@@ -174,6 +173,9 @@ class QuizzController extends Controller
                     $m->to($user->email)->subject( "Vos réponses au quizz" );
                     $m->attach($attachment, array('as' => 'mon-diplome'));
                 });
+
+                $user->sended_at = Carbon::now();
+                $user->save();
             }
         }
     }
