@@ -48,7 +48,7 @@ return array(
         "end"               => "Fin de la rando",
         "nb-reponses"       => "Nombre de pistes parcourues",
         "temps-quizz"       => "Vous avez terminé votre rando en",
-        'go-again'          => "On grimpe encors une fois ?",
+        'go-again'          => "On grimpe encore une fois ?",
         'fin-epreuve'       => "Fin de la rando",
         "niveau"            => "Votre niveau",
         "classement"        => "Classement",

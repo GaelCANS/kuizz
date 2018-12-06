@@ -1,2 +1,7 @@
- - podium sur plusieurs pages
- - système de droits sur un quizz
+Graphics todo
+
+- backoffice graphisme
+- frontoffice graphisme
+- template graphisme
+- création template CANS
+- email graphisme
