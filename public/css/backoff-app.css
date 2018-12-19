@@ -10765,6 +10765,7 @@ tbody.collapse.show {
 .card-title {
     margin-bottom: 0.75rem; }
 
+
 .card-subtitle {
     margin-top: -0.375rem;
     margin-bottom: 0; }
@@ -14416,6 +14417,12 @@ input:focus {
     background: #ffffff;
     width: 200px;
     height: 58px; }
+
+.navbar .navbar-brand-wrapper img {
+    width:100%;
+    height:auto;
+}
+
 .sidebar-dark .navbar .navbar-brand-wrapper {
     background: #3a3f51; }
 .navbar .navbar-brand-wrapper .navbar-brand {
@@ -14472,13 +14479,13 @@ input:focus {
     margin-left:1px;}
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
     color: inherit;
-    font-size: 0.9375rem; }
+  }
 @media (max-width: 767px) {
     .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
         margin-left: .5rem;
         margin-right: .5rem; } }
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link i {
-    font-size: 1.25rem; }
+    font-size: .75rem; }
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .btn, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .ajax-upload-dragdrop .ajax-file-upload, .ajax-upload-dragdrop .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .ajax-file-upload, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .swal2-modal .swal2-buttonswrapper .swal2-styled, .swal2-modal .swal2-buttonswrapper .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .swal2-styled, .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn .wizard > .actions a, .wizard > .actions .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link.nav-btn a {
     background: #039999;
     padding: .75rem 1rem;
@@ -14715,7 +14722,11 @@ input:focus {
     .navbar {
         flex-direction: row; }
     .navbar .navbar-brand-wrapper {
-        width: 75px; }
+              width:100%;
+          }
+    .navbar .navbar-brand-wrapper img {
+        width:200px;
+    }
     .navbar .navbar-brand-wrapper .brand-logo {
         display: none; }
     .navbar .navbar-brand-wrapper .brand-logo-mini {
@@ -14870,6 +14881,14 @@ address p {
     margin-bottom: 1.125rem;
     text-transform: uppercase;
     padding-left: 5px;}
+
+h2.page-title {
+    color: #404851;
+    margin: .25rem;
+    text-transform: uppercase;
+    font-size:1.25rem;
+    font-weight: bold;
+}
 
 h4.fiche-title {
     font-weight:bold;
@@ -15186,7 +15205,7 @@ pre {
 
 @media (min-width: 992px) {
     .horizontal-menu .navbar .navbar-brand-wrapper {
-        border-bottom: 1px solid #f3f3f3; }
+         }
     .horizontal-menu .navbar-toggler[data-toggle="minimize"], .horizontal-menu .navbar-toggler[data-toggle="toggleSidebarDisplay"] {
         display: none; }
     .horizontal-menu .content-wrapper,
@@ -15195,8 +15214,7 @@ pre {
         width: 100%; }
     .rtl.horizontal-menu .content-wrapper, .rtl.horizontal-menu .footer {
         margin-right: 0; }
-    .horizontal-menu .content-wrapper {
-        padding-top: 6rem; }
+
     .horizontal-menu .sidebar {
         width: 100%;
         min-height: auto;
@@ -18701,7 +18719,7 @@ dl li {
 .table thead th, .jsgrid .jsgrid-table thead th {
     border-top: 0;
     border-bottom-width: 1px;
-    font-weight: normal;
+    font-weight: bold;
     color: #000;
     font-size: 11.5px;
     text-align: center;
@@ -21209,7 +21227,7 @@ body.avgrund-active {
 }
 
 .status .select2 {
-    width:100px!important;
+    width:100%!important;
 }
 
 .status .select2-container--default .select2-selection--single .select2-selection__rendered {
