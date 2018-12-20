@@ -38,13 +38,18 @@
     font-size: 20px!important;
 }
 
-
 #container form {
-    width: 480px;
+    width: auto;
     text-align: center;
     font-size: 20px;
     color: #3f555e;
+    min-width: 650px;
+}
 
+#container form.player {
+    width: 480px!important;
+    max-width: 480px!important;
+    min-width: 480px!important;
 }
 
 #form-question {
@@ -115,9 +120,10 @@ h3 {
     color: #3f555e;
     text-shadow: 3px 3px 0px #fff;
     margin: 30px 0px;
-    line-height: 21px;
+    line-height: 40px;
     text-align: center;
 }
+
 
 
 .btn-primary, .btn-primary:hover, .btn-primary:visited {
@@ -175,6 +181,7 @@ h3 {
     border: 7px solid rgba(97, 205, 219, 0.11);
     border-radius: 10px;
     font-size: 22px;
+    padding: 15px;
 }
 
 .panel-default {
@@ -199,11 +206,13 @@ h3 {
 .panel-footer {
     background-color: transparent;
     border:none;
+    margin: 20px;
 }
 .well {
     background-color: white;
     border:none;
     box-shadow: none;
+    padding: 0!important;
 }
 
 
@@ -215,6 +224,7 @@ h3 {
     color:#8c999f;
     font-size: 20px;
     line-height: 20px;
+    padding-left: 0px;
 }
 
 label.good-anwser {
@@ -263,7 +273,7 @@ label.wrong-anwser {
     text-align: center;
     margin: 0 auto;
     display: block;
-    padding-top: 15px;
+    padding: 15px;
 }
 
 .icon-result {
@@ -284,3 +294,87 @@ input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
 
 
 
+@media screen and (max-width: 600px) {
+    #container {
+        margin: 0px auto 30px;
+        width: 90%;
+    }
+
+    #container .content-bloc {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    #container form.player, #container form {
+        width: 100%!important;
+        min-width: 100%!important;
+        margin:0 auto;
+    }
+
+    .form-horizontal .form-group {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    #panel1 {
+        padding:0;
+    }
+
+    .panel-title {
+        font-size: 20px;
+        line-height:24px;
+        margin:10px 0px;
+
+    }
+
+    .panel-title span {
+        margin: 6px 0px;
+        display: inline-block;
+    }
+
+    .checkbox label {
+        font-size: 18px;
+        line-height: 10px;
+    }
+
+    .panel-body {
+        font-size: 18px;
+    }
+
+    .well {
+        margin-bottom: 10px;
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+
+    .results-level {
+        font-size: 18px;
+    }
+
+    .results-text {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .results-perf {
+        font-size:22px;
+    }
+
+    .rain {
+        display: none!important;
+    }
+
+    h1, h2 {
+        font-size: 30px;
+        line-height: 40px;
+        margin:20px 0px;
+    }
+
+    .btn-primary, .btn-primary:hover, .btn-primary:visited {
+        font-size: 20px;
+        padding: 6px 20px 4px;
+    }
+}

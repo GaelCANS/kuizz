@@ -14,10 +14,3 @@
         </div>
     </div>
 
-    @include('effect.html')
-
-@endsection
-
-@section('content_after')
-    @include('effect.scripts')
-@endsection

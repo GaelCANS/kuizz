@@ -18,7 +18,7 @@
             @if (auth()->user()->admin)
 
             <li class="nav-item @if( Route::currentRouteName() == 'template-index' ) active @endif">
-                    <a class="nav-link" href="{{route('template-index')}}"><i class="icon-layers mr-2"></i>Templates</a>
+                    <a class="nav-link" href="{{route('template-index')}}"><i class="icon-layers mr-2"></i>Thèmes</a>
                 </li>
 
                 <li class="nav-item @if( Route::currentRouteName() == 'users-index' ) active @endif">

@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <div class="col-md-12 text-center">
-        <div>
+    <div class="text-center mx-auto">
+        <h1 style="max-width:700px;">
             {{$quizz->comment}}
-        </div>
+        </h1>
         <a href="{{route('rules-quizz' , array('name' => $quizz->url))}}" class="btn btn-primary" >{{ trans('quizz.'.$quizz->template->texts.'.btn-start') }}</a>
     </div>
 

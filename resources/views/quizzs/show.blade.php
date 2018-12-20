@@ -33,42 +33,55 @@
     ) !!}
 
     <div class="row">
-        <div class="col-6">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <h6>Nom du quizz</h6>
-                        {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" , 'id' => 'name-quizz') ) !!}
-                        {!! Form::hidden( 'url' , null , array( 'class' => 'form-control' , 'id' => 'url-quizz' , 'data-empty' => '' ) ) !!}
-                        {!! Form::hidden( 'single_response' , null , array( 'class' => 'form-control' , 'id' => 'single_reponse-quizz' , 'data-empty' => '' ) ) !!}
-                    </div>
+        <div class="col-4">
+            <div class="col-12">
+                <div class="form-group">
+                    <h6>Nom du quizz</h6>
+                    {!! Form::text( 'name' , null , array( 'class' => 'form-control' , 'placeholder' => "Saisissez le nom du quizz" , 'id' => 'name-quizz') ) !!}
+                    {!! Form::hidden( 'url' , null , array( 'class' => 'form-control' , 'id' => 'url-quizz' , 'data-empty' => '' ) ) !!}
+                    {!! Form::hidden( 'single_response' , null , array( 'class' => 'form-control' , 'id' => 'single_reponse-quizz' , 'data-empty' => '' ) ) !!}
                 </div>
+            </div>
 
-                <div class="col-4 d-inline-block status">
+            <div class="col-12">
+                <div class="form-group">
+                    <h6>Slogan</h6>
+                    {!! Form::text( 'comment' , null , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
+                </div>
+            </div>
+
+            <div class="row px-0 mx-0">
+
+                <div class="col-6 d-inline-block status">
                     <h6>Thème</h6>
                     {!! Form::select('template_id',$templates , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}
                 </div>
 
-                <div class=" col-4 d-inline-block status">
+
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <h6>Temps par question<small> (0 = illimité)</small></h6>
+                        {!! Form::text( 'timing' , null , array( 'class' => 'form-control' , 'placeholder' => "Indiquez le temps en secondes par question" ) ) !!}
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+
+
+                <div class=" col-6 d-none status">
                     <h6>Responsable</h6>
                     {!! Form::select('user_id',$users , null, ['class' => 'mb-1 select2' , 'id' => 'status-select', 'data-select2-id' => 'status-select']) !!}
                 </div>
 
-
-
-
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <h6>Slogan</h6>
-                        {!! Form::text( 'comment' , null , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
-                    </div>
-                </div>
-
             </div>
-
             <div class="row">
-                <div class="col-md-6">
+
+
+                <div class="col-6">
                     <div class="form-group">
                         <h6>Affichage des réponses <small>(la bonne réponse est affichée immédiatement après la validation)</small></h6>
 
@@ -86,11 +99,11 @@
 
                     </div>
                 </div>
-            </div>
 
 
-            <div class="row">
-                <div class="col-md-4">
+
+
+                <div class="col-6">
                     <div class="form-group">
                         <h6>Limiter le quizz aux collaborateurs</h6>
 
@@ -109,9 +122,11 @@
                     </div>
                 </div>
 
+            </div>
+            <div class="row">
 
 
-                <div class="col-md-4">
+                <div class="col-6">
                     <div class="form-group">
                         <h6>Autoriser plusieurs participations</h6>
 
@@ -129,22 +144,17 @@
 
                     </div>
                 </div>
-            </div>
 
 
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <h6>Timeur <small>(0 pour ne pas mettre de limite de temps)</small></h6>
-                        {!! Form::text( 'timing' , null , array( 'class' => 'form-control' , 'placeholder' => "Indiquez le temps en secondes par question" ) ) !!}
-                    </div>
-                </div>
-            </div>
-    </div>
 
 
-        <div class="col-6">
+
+
+</div>
+
+</div>
+        <div class="col-8">
             <ul id="container-questions" class="sortable" data-quizz="{{ $quizz != null ? $quizz->id : 0 }}">
                 @if (!empty($quizz->questions))
                     @forelse($quizz->questions as $question)
@@ -169,15 +179,9 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-fw fa-save"></i>Enregister
-                </button>
-            </div>
-        </div>
-    </div>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-fw fa-save"></i>Enregister
+    </button>
 
     </div>
 

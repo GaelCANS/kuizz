@@ -7,7 +7,7 @@
 {!! Form::model(
     null,
     array(
-        'class'     => 'form-horizontal',
+        'class'     => 'form-horizontal player',
         'url'       => action('QuizzController@newPlayer' , $quizz->url),
         'method'    => 'Post'
     )
