@@ -1,6 +1,6 @@
 <li id="question-{{$question->id}}" class="item-question">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-12">
             <div class="form-group">
                 <h6 data-toggle="collapse" data-target="#content-{{$question->id}}">Question n°<span class="order">{{$question->order}}</span></h6>
                 {!! Form::text( 'question[update]['.$question->id.'][wording]' , $question->wording , array( 'class' => 'form-control' , 'placeholder' => "Votre question" ) ) !!}
@@ -15,7 +15,7 @@
     <div class="collapse"  id="content-{{$question->id}}">
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-12">
                 <div class="form-group">
 
                     {!! Form::text( 'question[update]['.$question->id.'][comment]' , $question->comment , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}

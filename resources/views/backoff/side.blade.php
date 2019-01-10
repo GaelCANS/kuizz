@@ -1,20 +1,7 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item nav-profile">
-            <div class="nav-link">
-                <div class="profile-image">
 
-                </div>
-                <div class="profile-name">
-                    <p class="name">
-                        @if (auth()->user())
-                            {{ auth()->user()->fullname }}
-                        @endif
-                    </p>
-                </div>
-            </div>
-        </li>
 
 
         <li class="nav-item @if( Route::currentRouteName() == 'quizz-index' ) active @endif">

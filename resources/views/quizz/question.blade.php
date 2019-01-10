@@ -14,21 +14,21 @@
         )
     ) !!}
 
-            <div class="col-md-3">
-            </div>
 
-            <div class="col-md-12" id="panel1">
+            <div class="col-12" id="panel1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <span  style="float:left;"><small>{{$question->order}}/{{$quizz->questions->count()}}</small></span>
-                            <span class="title-quizz">{{$quizz->comment}}</span>
-                            <small style="float:right;width:60px;"><i class="fa fa-clock-o" aria-hidden="true"></i> <span id="getting-started" data-time="{{$quizz->timing}}" class="text-right" style="width:30px;"></span></small>
+                            <div class="row">
+                            <span class="col-xs-12 col-md-2"><small>{{$question->order}}/{{$quizz->questions->count()}}</small></span>
+                            <span class="cold-xs-12 col-md-8 title-quizz">{{$quizz->comment}}</span>
+                            <span class="col-xs-12 col-md-2"><i class="fa fa-clock-o" aria-hidden="true"></i> <span id="getting-started" data-time="{{$quizz->timing}}" class="text-right" style="width:30px;"></span></span>
+                            </div>
                         </h3>
 
 
                     </div>
-                    <div class="panel-body two-col">
+                    <div class="panel-body two-col text-center">
                         <span style="margin:20px 0px;display:block">{{$question->wording}}</span>
                         @foreach($question->answers as $answer)
                             <div class="row">
@@ -61,6 +61,7 @@
 
 
         </div>
+
 
     {!! Form::close() !!}
 

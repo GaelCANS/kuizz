@@ -3,23 +3,22 @@
 
 @include('frontoff.head')
 
-<body class="">
-<div class="container-scroller">
+<body class="vertical-center">
+<div id="container">
 
-    @include('frontoff.header')
 
-    <div class="container-fluid page-body-wrapper">
-        <div class="row row-offcanvas row-offcanvas-right">
+   <!--<div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">-->
             @include('frontoff.side')
 
-            <div class="content-wrapper">
+
                 @include('flash.front')
 
                 @yield('content')
             </div>
-        </div>
+        <!--</div>
 
-    </div>
+    </div>-->
     @include('frontoff.footer')
 </div>
 

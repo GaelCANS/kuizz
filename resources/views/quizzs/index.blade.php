@@ -1,11 +1,14 @@
 @extends('backoff.app')
 
 @section('content')
+    <div class="row">
+        <h2 class="page-title text-center d-inline-block mx-auto pb-4">Liste des Quizz <a href="{{action('QuizzController@create')}}" class="ml-3 ">
+                <button type="button" class="btn btn-secondary btn-xs" title="Ajouter">+ Créer un quizz</button>
+            </a></h2>
 
-    <h4 class="page-title d-none">Quizz</h4>
-    @include('quizzs.search')
+    </div>
 
-    <a href="{{action('QuizzController@create')}}"><button type="button" class="btn btn-secondary btn-xs mb-2" title="Ajouter">+ Ajouter un quizz</button></a>
+            @include('quizzs.search')
 
     <div class="row">
         <div class="col-12 grid-margin">
@@ -18,8 +21,8 @@
                                     <thead>
                                     <tr>
                                         <th>Nom</th>
-                                        <th>Responsable</th>
-                                        <th>Template</th>
+                                        <th>Créateur</th>
+                                        <th>Thème</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
