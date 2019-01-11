@@ -37,7 +37,12 @@
                                     <div class="well well-sm">
                                         <div class="checkbox">
                                             <label class="question-answer" @if ($quizz->display_response == 0) data-sr="@if ($answer->good){{22*$modulo}}@else{{22*$modulo+1}}@endif" @endif>
-                                                <input type="@if ($quizz->single_response == 0){{"radio"}}@else{{"checkbox"}}@endif" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
+                                                @if ($quizz->single_response == 0)
+                                                    <input type="radio" name="answer" class="btn-answer" value="{{$answer->id}}">
+                                                @else
+                                                    <input type="checkbox" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
+                                                @endif
+                                                <!--<input type="@if ($quizz->single_response == 0){{"radio"}}@else{{"checkbox"}}@endif" name="answer[{{$answer->id}}]" class="btn-answer" value="1">-->
                                                 <?= utf8_encode( $answer['wording'] ) ?>
                                                 <span class="icon-result glyphicon glyphicon-<?php echo $answer['is_good'] == '1' ? 'ok' : 'remove' ?>"></span>
                                             </label>

@@ -341,6 +341,12 @@ class QuizzController extends Controller
         // Enregistrement des réponses en base
         $requestAnswsers = $request->only('answer');
         if ($requestAnswsers['answer'] != null) {
+
+            // Bouton radio - switch pour conserver le même format que sur les checkbox
+            if ($quizz->single_response == 0 && !is_array($requestAnswsers['answer'])) {
+                $requestAnswsers['answer'] = array($requestAnswsers['answer'] => 1);
+            }
+
             $anwsers = Answer::whereIn('id', array_keys($requestAnswsers['answer']))->get();
             $user->answers()->attach($anwsers, array("question_id" => $question->id));
         }
