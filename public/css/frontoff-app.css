@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Chewy');
 
 .oooook {
-    color: green;
-    font-weight: bold;
+    color: green !important;
+    font-weight: bold !important;
 }
 
 .kooooo {
-    color: red;
-    font-weight: bold;
+    color: red !important;
+    font-weight: bold !important;
 }
 /***********************************************
  ************* Template : question *************

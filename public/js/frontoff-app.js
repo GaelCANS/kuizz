@@ -96,6 +96,18 @@ function reloadPodium()
  */
 function timer()
 {
+
+    var timeleft = $('#getting-started').data('time');
+    if (timeleft == 0) return false
+    var downloadTimer = setInterval(function(){
+
+        if(timeleft <= 0)
+            $('#quizz-form').submit();
+        else
+            $("#getting-started").text(0 + --timeleft)
+    },1000);
+
+    return false
     // Création de la date à J+30 secondes
     var futur=new Date()
     var timer = $('#getting-started').data('time')
@@ -120,6 +132,7 @@ function timer()
         // Init du compte à rebours
         $("#getting-started")
             .countdown(timerEnd, function (event) {
+                console.log(event.strftime())
                     $(this).text(
                         event.strftime('%S')
                     )
