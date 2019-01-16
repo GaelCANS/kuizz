@@ -43,7 +43,7 @@
                                                     <input type="checkbox" name="answer[{{$answer->id}}]" class="btn-answer" value="1">
                                                 @endif
                                                 <!--<input type="@if ($quizz->single_response == 0){{"radio"}}@else{{"checkbox"}}@endif" name="answer[{{$answer->id}}]" class="btn-answer" value="1">-->
-                                                <?= utf8_encode( $answer['wording'] ) ?>
+                                                <?= ( $answer['wording'] ) ?>
                                                 <span class="icon-result glyphicon glyphicon-<?php echo $answer['is_good'] == '1' ? 'ok' : 'remove' ?>"></span>
                                             </label>
                                         </div>

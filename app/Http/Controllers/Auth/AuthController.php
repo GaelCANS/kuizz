@@ -40,6 +40,12 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
+
+    protected function authenticated( $request, $user ) {
+        return redirect()->route('quizz-index');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -63,6 +69,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        dd('.');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

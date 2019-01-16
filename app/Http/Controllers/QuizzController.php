@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Agency;
 use App\Answer;
 use App\Grade;
 use App\Library\Diplome;
@@ -231,6 +232,8 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::findOrFail($id);
         $quizz->load('Users');
+        //$quizz->Users->load('Agency');
+
         $users = Quizz::top(100000,0,$quizz);
 
         return view('quizzs.results' , compact('quizz' , 'users'));
@@ -252,18 +255,25 @@ class QuizzController extends Controller
     }
 
 
-    public function stats($id)
+    public function stats($id,$agency_id=0)
     {
         $quizz = Quizz::findOrFail($id);
         $quizz->load('Questions');
 
-        $participants = Quizz::participants($quizz);
-        $users = Quizz::top(100000,0,$quizz);
+        $participants = Quizz::participants($quizz,$agency_id);
+        $users = Quizz::top(100000,0,$quizz,$agency_id);
+        
         $best = $users[0]->total;
         $worst = end($users)->total;
         $average = round(array_sum(array_column($users,'total'))/count($users),1);
 
-        return view('quizzs.stats' , compact('quizz' , 'best' , 'worst' , 'average' , 'participants'));
+        $agencies= Agency::orderBy('name' , 'ASC')
+            ->pluck('name' , 'id')
+            ->toArray();
+        $agencies[0]= "Choix de l'agence";
+        ksort($agencies);
+
+        return view('quizzs.stats' , compact('quizz' , 'best' , 'worst' , 'average' , 'participants' , 'agencies', 'agency_id'));
     }
 
 
@@ -285,10 +295,17 @@ class QuizzController extends Controller
         $quizz = Quizz::whereUrl($name)->first();
         if ($quizz == null) return view('errors.404');
 
+
+        $agencies= Agency::orderBy('name' , 'ASC')
+            ->pluck('name' , 'id')
+            ->toArray();
+        $agencies[0]= "Choix de l'agence";
+        ksort($agencies);
+
         session( array('quizz' => $quizz ) );
         $quizz->load('Template');
 
-        return view('quizz.player' , compact('quizz'));
+        return view('quizz.player' , compact('quizz', 'agencies'));
     }
 
 

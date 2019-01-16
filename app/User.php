@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'admin' , 'quizz_id'
+        'name', 'email', 'password', 'admin' , 'quizz_id' , 'agency_id'
     ];
 
     /**
@@ -56,5 +56,11 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->belongsToMany('App\Question')->withTimestamps();
+    }
+
+    // 1 to many
+    public function agency()
+    {
+        return $this->belongsTo('App\Agency');
     }
 }

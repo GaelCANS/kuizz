@@ -83,16 +83,18 @@ class Quizz extends Model
      * @param $quizz
      * @return collection
      */
-    public static function top($nb, $page,$quizz)
+    public static function top($nb, $page,$quizz,$agency_id=0)
     {
         $from = $page > 0 ? $page*$nb : 0;
 
         return DB::table('question_user AS au')
             ->select(
-                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , u.sended_at , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree')
+                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , u.sended_at , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree, a.name AS agency, u.agency_id')
             )
             ->join('users AS u','u.id','=','au.user_id')
+            ->leftJoin('agencies AS a','a.id','=','u.agency_id')
             ->where('u.quizz_id','=',$quizz->id)
+            ->where('u.agency_id', ($agency_id == 0 ? '>' : '=') , ($agency_id == 0 ? '-1': $agency_id) )
             ->where("u.finished_at", "!=", "0000-00-00 00:00:00")
             ->groupBy('user_id')
             ->orderBy('total' , 'desc')
@@ -108,9 +110,12 @@ class Quizz extends Model
      * @param $quizz
      * @return int
      */
-    public static function participants($quizz)
+    public static function participants($quizz, $agency_id = 0)
     {
-        return User::whereQuizzId($quizz->id)->where('finished_at' , '!=','0000-00-00 00:00:00')->count();
+        if ($agency_id == 0)
+            return User::whereQuizzId($quizz->id)->where('finished_at' , '!=','0000-00-00 00:00:00')->count();
+        else
+            return User::whereQuizzId($quizz->id)->whereAgencyId($agency_id)->where('finished_at' , '!=','0000-00-00 00:00:00')->count();
     }
 
     public static function sendableUsers($id)

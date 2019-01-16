@@ -25,6 +25,7 @@
             <th scope="col">Classement</th>
             <th scope="col">Nom</th>
             <th scope="col">Email</th>
+            <th scope="col">Agence</th>
             <th scope="col">Score</th>
             <th scope="col">Temps</th>
             <th scope="col">Envoi</th>
@@ -52,6 +53,7 @@
             </th>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
+            <td>{{$user->agency}}</td>
             <td>{{$user->total}}</td>
             <td>{{$user->duree}}</td>
             <td>@if ($user->sended_at != '0000-00-00 00:00:00') oui @else non @endif</td>

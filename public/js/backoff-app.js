@@ -57,7 +57,17 @@ $(document).ready(function(){
             }
         }
     })
-    
+
+    /**
+     * Quizz - stat
+     */
+    $('#stat-agency').on('change',function () {
+        var agency_id = $(this).val()
+        var url = $(this).attr('basepath')
+        $(location).attr('href', url+'/'+agency_id)
+    })
+
+
     $('.user-result').on('click', function () {
         viewResults($(this))
     })

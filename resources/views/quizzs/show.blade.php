@@ -125,7 +125,6 @@
             </div>
             <div class="row">
 
-
                 <div class="col-6">
                     <div class="form-group">
                         <h6>Autoriser plusieurs participations</h6>
@@ -145,13 +144,26 @@
                     </div>
                 </div>
 
+                <div class="col-6">
+                    <div class="form-group">
+                        <h6>Afficher les agences</h6>
 
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                {!! Form::label('show_agencies-1', 'Oui', ['class' => '']) !!}
+                                {!! Form::radio('show_agencies', '1', null , ['id' => 'show_agencies-1']) !!}
 
+                            </div>
+                            <div class="radio">
+                                {!! Form::label('show_agencies-0', 'Non', ['class' => '']) !!}
+                                {!! Form::radio('show_agencies', '0', null , ['id' => 'show_agencies-0']) !!}
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
 
-
-
-</div>
+            </div>
 
 </div>
         <div class="col-8">

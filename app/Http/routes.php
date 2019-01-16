@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Quizz - résultats utilisateur
         Route::get('quizz/results-user/{quizz_id}/{user_id}', 'QuizzController@userResults')->name('results-user-quizz');
         // Quizz - stats
-        Route::get('quizz/stats/{id}', 'QuizzController@stats')->name('stats-quizz');
+        Route::get('quizz/stats/{id}/{agency_id?}', 'QuizzController@stats')->name('stats-quizz');
         // Quizz - send
         Route::post('quizz/send/{id}', 'QuizzController@send')->name('send-quizz');
         // Quizz - duplicate
@@ -77,6 +77,17 @@ Route::group(['middleware' => 'auth'], function () {
             array(
                 'names' => array(
                     'index' => 'template-index'
+                )
+            )
+        );
+
+        // Agencies
+        Route::resource(
+            'agency',
+            'AgencyController' ,
+            array(
+                'names' => array(
+                    'index' => 'agencies-index'
                 )
             )
         );
