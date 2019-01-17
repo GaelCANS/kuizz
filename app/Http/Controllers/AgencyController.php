@@ -16,7 +16,7 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        $agencies = Agency::orderBy('name')->get();
+        $agencies = Agency::orderBy('name')->whereDelete('0')->get();
         return view('agencies.index', compact('agencies'));
     }
 
@@ -91,6 +91,6 @@ class AgencyController extends Controller
         $agency = Agency::findOrFail($id);
         $name = $agency->name;
         $agency->update( array('delete' => 1) );
-        return redirect(action('TemplateController@index'))->with('success' , "Le template {$name} a bien été supprimé.");
+        return redirect(action('AgencyController@index'))->with('success' , "L'agence {$name} a bien été supprimé.");
     }
 }

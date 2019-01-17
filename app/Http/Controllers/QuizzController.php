@@ -273,6 +273,7 @@ class QuizzController extends Controller
         }
 
         $agencies= Agency::orderBy('name' , 'ASC')
+            ->whereDelete('0')
             ->pluck('name' , 'id')
             ->toArray();
         $agencies[0]= "Choix de l'agence";
@@ -302,6 +303,7 @@ class QuizzController extends Controller
 
 
         $agencies= Agency::orderBy('name' , 'ASC')
+            ->whereDelete('0')
             ->pluck('name' , 'id')
             ->toArray();
         $agencies[0]= "Choix de l'agence";
