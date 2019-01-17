@@ -262,10 +262,15 @@ class QuizzController extends Controller
 
         $participants = Quizz::participants($quizz,$agency_id);
         $users = Quizz::top(100000,0,$quizz,$agency_id);
-        
-        $best = $users[0]->total;
-        $worst = end($users)->total;
-        $average = round(array_sum(array_column($users,'total'))/count($users),1);
+
+        if ( count($users) > 0 ) {
+            $best = $users[0]->total;
+            $worst = end($users)->total;
+            $average = round(array_sum(array_column($users,'total'))/count($users),1);
+        }
+        else {
+            $best = $worst = $average = " - ";
+        }
 
         $agencies= Agency::orderBy('name' , 'ASC')
             ->pluck('name' , 'id')
