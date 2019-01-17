@@ -28,6 +28,10 @@
                                         <li style="color:@if($answer->good)green @else red @endif";>
                                             <input type="checkbox" disabled @if(\App\Answer::hasAnswered($answer->id, $user->id)) checked @endif>
                                             {{$answer->wording}}
+                                            @if ($answer->comments != '')
+                                                <br>
+                                                <small>{!! $answer->comments !!}</small>
+                                            @endif
                                         </li>
                                     @endforeach
                                 </ul>
