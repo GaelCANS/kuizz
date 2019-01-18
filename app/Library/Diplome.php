@@ -126,9 +126,9 @@ class Diplome
     private function store()
     {
         // Dossier tmp dans le public_dir - utile pour les tests
-         $name = public_path().'/tmp/diplome-'.$this->user->id.'.jpg';
+        // $name = public_path().'/tmp/diplome-'.$this->user->id.'.jpg';
         // Dossier tmp de laravel
-        //$name = sys_get_temp_dir()  .'/diplome-'.$this->user->id.'.jpg';
+        $name = sys_get_temp_dir()  .'/diplome-'.$this->user->id.'.jpg';
         $this->img->save($name);
         return $name;
     }

@@ -172,7 +172,7 @@ class QuizzController extends Controller
                 Mail::send('mails.quizz-results', compact('quizz' , 'user'), function ($m) use ($user , $quizz , $attachment) {
                     $m->from(env('MAIL_EXPEDITOR_MAIL') , env('MAIL_EXPEDITOR_NAME'));
                     $m->to($user->email)->subject( "Vos réponses au quizz" );
-                    $m->attach($attachment, array('as' => 'mon-diplome'));
+                    $m->attach($attachment, array('as' => 'mon-diplome.jpg'));
                 });
 
                 $user->sended_at = Carbon::now();
