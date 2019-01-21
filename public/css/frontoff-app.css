@@ -8,6 +8,7 @@
 .kooooo {
     color: red !important;
     font-weight: bold !important;
+    text-decoration: line-through;
 }
 /***********************************************
  ************* Template : question *************
