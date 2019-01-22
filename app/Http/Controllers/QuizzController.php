@@ -14,7 +14,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Cookie;
 
@@ -30,7 +32,6 @@ class QuizzController extends Controller
 
         /*$diplome = new Diplome(Quizz::findOrFail(5), User::findOrFail(27));
         $attachment = $diplome->getDiplome();*/
-
 
         $data = $request = (object)\Cookie::get('filter');
 
@@ -181,6 +182,7 @@ class QuizzController extends Controller
         }
     }
 
+
     public function duplicate($id)
     {
         $quizz = Quizz::findOrFail($id);
@@ -257,6 +259,7 @@ class QuizzController extends Controller
 
     public function stats($id,$agency_id=0)
     {
+
         $quizz = Quizz::findOrFail($id);
         $quizz->load('Questions');
 
@@ -271,7 +274,6 @@ class QuizzController extends Controller
         else {
             $best = $worst = $average = " - ";
         }
-
         $agencies= Agency::orderBy('name' , 'ASC')
             ->whereDelete('0')
             ->pluck('name' , 'id')
@@ -280,6 +282,37 @@ class QuizzController extends Controller
         ksort($agencies);
 
         return view('quizzs.stats' , compact('quizz' , 'best' , 'worst' , 'average' , 'participants' , 'agencies', 'agency_id'));
+    }
+
+
+    public function export($id)
+    {
+        $quizz = Quizz::findOrFail($id);
+        $quizz->load('Questions');
+        $users = User::whereQuizzId($id)->orderBy('agency_id' , 'ASC')->where('finished_at','!=','0000-00-00 00:00:00')->whereDelete(0)->get();
+
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=export-resultats.csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+        $callback = function() use ($users, $quizz) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, array('Question', 'Application', 'Theme', 'Agence', 'Nom/Prenom', 'Fonction', 'Reponse'));
+
+            foreach ($users as $user) {
+                foreach ($quizz->questions as $question) {
+                    fputcsv($file, array(utf8_decode($question->wording), "", "", ($user->agency ? utf8_decode($user->agency->name) : ""), utf8_decode($user->name), "", $user->scoreQuestion($question->id)));
+                }
+            }
+            fclose($file);
+        };
+
+        return Response::stream($callback, 200, $headers);
+
     }
 
 
@@ -448,3 +481,4 @@ class QuizzController extends Controller
     }
 
 }
+

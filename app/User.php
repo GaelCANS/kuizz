@@ -4,6 +4,7 @@ namespace App;
 
 use App\Library\Traits\Scopable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,12 @@ class User extends Authenticatable
 
     public function getSendedAttribute() {
         return $this->sended_at == '0000-00-00 00:00:00' ? false : true;
+    }
+
+    public function scoreQuestion($question_id)
+    {
+        $score = DB::table('question_user')->select('score')->whereUserId($this->id)->whereQuestionId($question_id)->first();
+        return $score ? $score->score : 0;
     }
 
     // many to many

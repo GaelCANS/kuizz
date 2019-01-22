@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('quizz/filter/clear', 'QuizzController@clearfilter')->name('clear-filter-quizz');
         // Quizz - résultats
         Route::get('quizz/results/{id}', 'QuizzController@results')->name('results-quizz');
+        // Quizz - export
+        Route::get('quizz/export/{id}', 'QuizzController@export')->name('export-quizz');
         // Quizz - résultats utilisateur
         Route::get('quizz/results-user/{quizz_id}/{user_id}', 'QuizzController@userResults')->name('results-user-quizz');
         // Quizz - stats

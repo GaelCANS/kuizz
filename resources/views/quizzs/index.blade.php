@@ -30,7 +30,7 @@
                                     @forelse($quizzs as $quizz)
                                         <tr>
                                             <th>{{$quizz->name}}</th>
-                                            <th>{{$quizz->user->name}}</th>
+                                            <th>{{utf8_decode($quizz->user->name)}}</th>
                                             <th>{{$quizz->template->name}}</th>
                                             <th>
                                                 <a href="{{action("QuizzController@show" , $quizz)}}" title="Modifier"><button type="button" class="btn btn-outline-secondary icon-btn"><i class="mdi mdi-border-color"></i></button></a>

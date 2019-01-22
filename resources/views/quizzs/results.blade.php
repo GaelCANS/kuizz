@@ -7,6 +7,7 @@
     </h4>
 
     <div class="float-right">
+        <a href="{{action('QuizzController@export', $quizz)}}" class="btn btn-danger"><i class="mdi mdi-download"></i> Export vers Excel</a>
         <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
     </div>
 
