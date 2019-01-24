@@ -269,7 +269,10 @@ class QuizzController extends Controller
         if ( count($users) > 0 ) {
             $best = $users[0]->total;
             $worst = end($users)->total;
-            $average = round(array_sum(array_column($users,'total'))/count($users),1);
+            $func = function($value) {
+                return (array) $value;
+            };
+            $average = round(array_sum(array_column(array_map($func, $users),'total'))/count($users),1);
         }
         else {
             $best = $worst = $average = " - ";
