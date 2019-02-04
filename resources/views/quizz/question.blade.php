@@ -30,7 +30,8 @@
                     </div>
                     <div class="panel-body two-col text-center">
                         <span style="margin:20px 0px;display:block">{{$question->wording}}</span>
-                        @foreach($question->answers as $answer)
+
+                        @foreach($question->answers->shuffle() as $answer)
                             <div class="row">
                                 <div class="col-md-12">
 
