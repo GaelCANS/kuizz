@@ -18,7 +18,13 @@
             <div class="col-12">
                 <div class="form-group">
 
-                    {!! Form::text( 'question[update]['.$question->id.'][comment]' , $question->comment , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
+                    <div class="col-md-12" style="margin-bottom: 20px">
+                        {!! Form::text( 'question[update]['.$question->id.'][comment]' , $question->comment , array( 'class' => 'form-control' , 'placeholder' => "Un commentaire ?" ) ) !!}
+                    </div>
+
+                    <div class="col-md-12">
+                        {!! Form::textarea( 'question[update]['.$question->id.'][response]' , $question->response , array( 'class' => 'form-control response-detail' , 'placeholder' => "Une explication visible pour la réponse" ) ) !!}
+                    </div>
 
                     <button type="button" class="btn btn-outline-secondary icon-btn del-question" data-question="{{$question->id}}"  data-link="{{action('QuestionController@destroy' , array('id' => $question->id))}}"><i class="mdi mdi-delete"></i></button>
 

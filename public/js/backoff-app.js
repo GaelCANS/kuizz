@@ -30,11 +30,40 @@ $(document).ready(function(){
         addQuestion($(this))
     })
 
+
+    /**
+     * Quizz - quizz
+     */
+    $('#quizz-form').on('submit', function () {
+        $('.response-detail').each(function () {
+            var encrypt = CryptoJS.AES.encrypt( $(this).val() , "maloo")
+            $(this).val(encrypt)
+        })
+    })
+
+    /**
+     * Quizz - quizz
+     */
+    if ($('#quizz-form').length > 0 ) {
+        $('.response-detail').each(function () {
+            var decrypt = CryptoJS.AES.decrypt($(this).val(), 'maloo');
+            $(this).val(decrypt.toString(CryptoJS.enc.Utf8))
+        })
+    }
+
     /**
      * Quizz - quizz
      */
     $('#name-quizz').on('keyup', function () {
         $('#url-quizz').val(_.kebabCase($('#name-quizz').val()))
+    })
+
+    /**
+     * Quizz - quizz
+     */
+    displayReponseTiming($('input[name="display_responses"]:checked'))
+    $('input[name="display_responses"]').on('change', function () {
+        displayReponseTiming($(this))
     })
 
     /**
@@ -415,4 +444,14 @@ function sendQuizz(obj)
             console.log('coucou')
             $('#results-modal').modal('hide')
         })
+}
+
+/**
+ * Quizz - quizz
+ */
+function displayReponseTiming(obj) {
+    if (obj.val() == '0')
+        $('#timing-response').hide();
+    else
+        $('#timing-response').show();
 }

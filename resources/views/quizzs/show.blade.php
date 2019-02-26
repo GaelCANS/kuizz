@@ -28,7 +28,8 @@
         array(
             'class'     => 'form-horizontal',
             'url'       => action('QuizzController@'.($quizz == null ? 'store' : 'update') , $quizz),
-            'method'    => $quizz == null ? 'Post' : 'Put'
+            'method'    => $quizz == null ? 'Post' : 'Put',
+            'id'        => 'quizz-form'
         )
     ) !!}
 
@@ -85,11 +86,17 @@
                     <div class="form-group">
                         <h6>Affichage des réponses <small>(la bonne réponse est affichée immédiatement après la validation)</small></h6>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-12">
                             <div class="radio">
                                 {!! Form::label('display_responses-1', 'Oui', ['class' => '']) !!}
                                 {!! Form::radio('display_responses', '1', null , ['id' => 'display_responses-1']) !!}
 
+                            </div>
+                            <div class="text" id="timing-response">
+                                <div class="form-group">
+                                    <h6>Temps par réponse</h6>
+                                    {!! Form::text( 'response_delay' , null , array( 'class' => 'form-control' , 'placeholder' => "Temps pour l'affichage des réponses" ) ) !!}
+                                </div>
                             </div>
                             <div class="radio">
                                 {!! Form::label('display_responses-0', 'Non', ['class' => '']) !!}

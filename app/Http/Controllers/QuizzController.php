@@ -382,7 +382,12 @@ class QuizzController extends Controller
         if ($question != null) {
             $question->load('Answers');
             $modulo = rand(91,98);
-            return view('quizz.question' , compact('quizz' , 'question' , 'modulo'));
+            $response_false = str_replace(
+                array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'),
+                array('Z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y'),
+                $question->response
+            );
+            return view('quizz.question' , compact('quizz' , 'question' , 'modulo', 'response_false'));
         }
 
         return redirect(action('QuizzController@end' , array('name' => $quizz->url)));

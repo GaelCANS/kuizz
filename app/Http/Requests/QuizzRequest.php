@@ -44,6 +44,7 @@ class QuizzRequest extends Request
                 $rules["question.update.{$item}.wording"]       = array('required','string');
                 $rules["question.update.{$item}.order"]         = array('required' , 'integer');
                 $rules["question.update.{$item}.comment"]       = array('string');
+                $rules["question.update.{$item}.response"]      = array('string');
             }
         }
 
@@ -74,7 +75,8 @@ class QuizzRequest extends Request
             'timing'         => 'integer',
             'single_rseponse'=> 'boolean',
             'ca_only'        => 'boolean',
-            'regame'         => 'boolean'
+            'regame'         => 'boolean',
+            'response_delay' => 'numeric'
         );
     }
 }

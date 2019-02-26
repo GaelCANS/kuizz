@@ -16,6 +16,9 @@
 <!-- Lodash -->
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 
+<!-- Crypto -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
 <!-- Chargement des JS -->
 <script src="{{ url('/js/backoff-app.js?v='.time() ) }}"></script>
 <script src="{{ url('/js/laravel.js?v=1' ) }}"></script>

@@ -23,13 +23,29 @@ $(document).ready(function(){
         $('#submit-form-btn').attr('disabled' , true)
         e.preventDefault()
         if ($('#quizz-form').data('dr') == 1) {
+            var response_delay = 1500
             var mdl = $(this).data('mod');
             $('.question-answer').each(function () {
                 $(this).addClass( ($(this).data('sr')%mdl == 0) ? "oooook" : "kooooo" )
             })
+            var qrc = '';
+            $('.qcr-m .qcr').each(function () {
+                if ($(this).data('qcr')%mdl == 0) {
+                    var str = $(this).text()
+                    qrc = CryptoJS.AES.decrypt(str.toString(), 'maloo');
+                    qrc = qrc.toString(CryptoJS.enc.Utf8)
+                }
+            })
+            if (qrc != '') {
+                $('.answers-content').fadeOut(1500, function () {
+                    $('.panel-body').append('<small class="text-left">'+qrc+'</small>')
+                })
+                response_delay = $('#quizz-form').data('resptime')
+            }
+
             setTimeout(function () {
                 form.submit()
-            }, 1500)
+            }, response_delay)
         }
         else {
             form.submit()

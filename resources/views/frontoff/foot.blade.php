@@ -10,6 +10,9 @@
 <!-- Lodash -->
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 
+<!-- Crypto -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
 <!-- Chargement des JS -->
 <script src="{{ url('/js/countdown.js' ) }}"></script>
 <script src="{{ url('/js/frontoff-app.js?v='.time() ) }}"></script>

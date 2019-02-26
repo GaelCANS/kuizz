@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateQuizzComment extends Migration
+class UpdateQuizzTableResponseDelay extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class UpdateQuizzComment extends Migration
     public function up()
     {
         Schema::table('quizzs', function (Blueprint $table) {
-            $table->text('comment');
+            $table->float('response_delay');
         });
     }
 
@@ -25,7 +25,7 @@ class UpdateQuizzComment extends Migration
     public function down()
     {
         Schema::table('quizzs', function (Blueprint $table) {
-            $table->dropColumn('comment');
+            $table->dropColumn('response_delay');
         });
     }
 }
