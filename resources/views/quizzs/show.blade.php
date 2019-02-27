@@ -51,6 +51,13 @@
                 </div>
             </div>
 
+            <div class="col-12">
+                <div class="form-group">
+                    <h6>Intro</h6>
+                    {!! Form::textarea( 'intro' , null , array( 'class' => 'form-control' , 'placeholder' => "Texte introductif du quizz", "row" => '4' ) ) !!}
+                </div>
+            </div>
+
             <div class="row px-0 mx-0">
 
                 <div class="col-6 d-inline-block status">

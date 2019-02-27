@@ -16,11 +16,13 @@
         <li><a href="#">Statistiques</a></li>
     </ul>
 
+    @if($quizz->show_agencies)
     <div class="row">
         <div class="col-md-12">
             {!! Form::select( 'agency_id' , $agencies , $agency_id , array( 'class' => 'form-control', 'id' => 'stat-agency', 'basepath' => route('stats-quizz' , array('id' => $quizz->id))) ) !!}
         </div>
     </div>
+    @endif
 
     <div class="row">
         @include('quizzs.stats-box', array('icon' => 'basket' , 'class' => 'success' , 'libelle' => 'Meilleure note' , 'value' => $best))
