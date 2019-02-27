@@ -7,7 +7,7 @@
     <div class="content-bloc text-center">
         <dl>
             <dt>{{$quizz->questions->count()}} questions</dt>
-            <dd>sur le digital (ou pas...)</dd>
+            <dd>{{ trans('quizz.'.$quizz->template->texts.'.digital-ou-pas') }}</dd>
         </dl>
         <dl>
             <dt>Un temps @if ($quizz->timing > 0)limité @else illimité @endif</dt>

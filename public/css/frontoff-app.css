@@ -17,7 +17,7 @@
 
 #container {
     margin: 0 auto;
-    
+
 }
 
 #container .content-bloc {
@@ -183,6 +183,30 @@ h3 {
     border-radius: 10px;
     font-size: 22px;
     padding: 15px;
+    position:relative;
+}
+
+.panel-body-idea {
+    border: 7px solid #FFCE5D !important;
+}
+
+.panel-body-idea .wording-question {
+    opacity:0.2;
+}
+
+#bulb-container {
+    position: absolute;
+    z-index: 10;
+    top: -50px;
+    right: -50px;
+    display:none;
+}
+
+#bulb-timer {
+    font-size: 1em;
+    right: 44px;
+    position: absolute;
+    top: 29px;
 }
 
 .panel-default {

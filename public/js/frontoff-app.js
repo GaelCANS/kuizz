@@ -38,7 +38,10 @@ $(document).ready(function(){
             })
             if (qrc != '') {
                 $('.answers-content').fadeOut(1500, function () {
-                    $('.panel-body').append('<small class="text-left">'+qrc+'</small>')
+                    var widthPB = $('.panel-body').css('width')
+                    $('.panel-body').append('<small class="text-left">'+qrc+'</small>').css('width',widthPB).addClass('panel-body-idea')
+                    $('#bulb-container').show()
+                    timerBulb(response_delay/1000-1)
                 })
                 response_delay = $('#quizz-form').data('resptime')
             }
@@ -94,17 +97,34 @@ function reloadPodium()
     })
 
     $.ajax({
-        method: "POST",
-        url: link,
-        data: {}
-    })
-    .done(function( data ) {
-        $('#podium').html(data.html)
-        $('#podium').attr('ids',data.ids)
-        $('#nb-participants').html(data.participants)
-    })
+            method: "POST",
+            url: link,
+            data: {}
+        })
+        .done(function( data ) {
+            $('#podium').html(data.html)
+            $('#podium').attr('ids',data.ids)
+            $('#nb-participants').html(data.participants)
+        })
 
     setTimeout(reloadPodium,9000);
+}
+
+
+
+
+/**
+ * Question
+ */
+function timerBulb(timeleft)
+{
+    var downloadTimer = setInterval(function(){
+
+        /*if(timeleft <= 0)
+         $('#quizz-form').submit();
+         else*/
+        $("#bulb-timer").text(--timeleft)
+    },1000);
 }
 
 /**
@@ -148,7 +168,7 @@ function timer()
         // Init du compte à rebours
         $("#getting-started")
             .countdown(timerEnd, function (event) {
-                console.log(event.strftime())
+                    console.log(event.strftime())
                     $(this).text(
                         event.strftime('%S')
                     )
