@@ -22281,3 +22281,7 @@ div.tagsinput span.tag a {
 .wrong {
     color: red;
 }
+
+.user-result {
+    cursor: pointer;
+}

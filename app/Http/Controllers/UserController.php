@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -121,6 +123,18 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->update( array('delete' => '1') );
+
+        return redirect()->back()->with('success' , "L utilsateur vient d'être supprimé");
+    }
+
+    public function hardDestroy($id)
+    {
+        if (Auth::user()->email != env('SUPER_ADMIN')) return redirect()->back()->with('success' , "Action non autorisée");
+
+        DB::table('question_user')->whereUserId($id)->delete();
+        DB::table('answer_user')->whereUserId($id)->delete();
+        $user = User::findOrFail($id);
+        $user->delete();
 
         return redirect()->back()->with('success' , "L utilsateur vient d'être supprimé");
     }

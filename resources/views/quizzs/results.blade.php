@@ -30,6 +30,9 @@
             <th scope="col">Score</th>
             <th scope="col">Temps</th>
             <th scope="col">Envoi</th>
+            @if(\Illuminate\Support\Facades\Auth::user()->email == env('SUPER_ADMIN'))
+            <th scope="col">Del</th>
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -40,7 +43,7 @@
             @php
             $i++;
             @endphp
-        <tr data-link="{{ route('results-user-quizz' , array('quizz_id' => $quizz->id , 'user_id' => $user->id)) }}" class="user-result">
+        <tr data-link="{{ route('results-user-quizz' , array('quizz_id' => $quizz->id , 'user_id' => $user->id)) }}">
             <th scope="row">
                 @if ($i == 1)
                     <img src="{{ URL::to('/') }}/img/medal-or.png" title="Premier">
@@ -52,12 +55,21 @@
                     {{$i}}
                 @endif
             </th>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
+            <td class="user-result">{{$user->name}}</td>
+            <td class="user-result">{{$user->email}}</td>
             <td>{{$user->agency}}</td>
             <td>{{$user->total}}</td>
             <td>{{$user->duree}}</td>
             <td>@if ($user->sended_at != '0000-00-00 00:00:00') oui @else non @endif</td>
+            @if(\Illuminate\Support\Facades\Auth::user()->email == env('SUPER_ADMIN'))
+            <td>
+                <a href="{{route('hard-destroy', array('id' => $user->id))}}" title="Supprimer" data-confirm="Voulez-vous vraiment supprimer" data-method="delete">
+                    <button type="button" class="btn btn-outline-secondary icon-btn">
+                        <i class="mdi mdi-delete"></i>
+                    </button>
+                </a>
+            </td>
+            @endif
         </tr>
         @endforeach
         </tbody>

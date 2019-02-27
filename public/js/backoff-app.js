@@ -357,7 +357,7 @@ function addGrade(obj)
  */
 function viewResults(obj)
 {
-    var link = obj.data('link')
+    var link = obj.parent('tr').data('link')
 
     $.ajaxSetup({
         headers: {

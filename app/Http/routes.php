@@ -117,6 +117,7 @@ Route::group(['middleware' => 'auth'], function () {
                 )
             )
         );
+        Route::delete('users/hard-destroy/{id}', 'UserController@hardDestroy')->name('hard-destroy');
 
         Route::get('/moncompte/{id}' , 'UserController@show')->name('mon-compte');
 
