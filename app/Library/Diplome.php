@@ -6,6 +6,7 @@ namespace App\Library;
 
 
 use App\Grade;
+use App\Question;
 use App\Quizz;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
@@ -89,7 +90,8 @@ class Diplome
         $this->addText($this->user->name,trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-nom-y'));
         // txt Score
         $score = Quizz::score($this->user);
-        $this->addText($score,trans('quizz.'.$this->quizz->template->texts.'.diplome-score-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-y'));
+        $questions_count = Question::whereQuizzId($this->quizz->id)->whereDelete('0')->count();
+        $this->addText($score."/".$questions_count,trans('quizz.'.$this->quizz->template->texts.'.diplome-score-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-score-y'));
         // txt Temps
         $this->addText(Quizz::duree($this->user),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-font'),trans('quizz.'.$this->quizz->template->texts.'.diplome-color1'),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-x'),trans('quizz.'.$this->quizz->template->texts.'.diplome-tps-y'));
         // txt Grade
