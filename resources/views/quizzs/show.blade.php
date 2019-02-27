@@ -2,25 +2,30 @@
 
 @section('content')
     <div class="row">
-        <h2 class="page-title text-center d-inline-block mx-auto">
-            @if( $quizz == null ) Création @else Édition @endif du quizz @if( $quizz != null ) @endif
-        </h2>
+        <div class="col-md-8 text-center">
+            <h2 class="page-title text-center d-inline-block mx-auto">
+                @if( $quizz == null ) Création @else Édition @endif du quizz @if( $quizz != null ) @endif
+            </h2>
+        </div>
 
-        <div class="float-right">
-            <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-fw fa-save"></i>Enregister
-            </button>
-            @if($quizz != null)
-                <a href="{{route('intro-quizz' , array('name' => $quizz->url))}}" target="_blank" class="btn btn-primary"><i class="fa fa-angle-left"></i> Voir le quizz</a>
-            @endif
+        <div class="col-md-4">
+            <div class="float-right">
+                <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-fw fa-save"></i>Enregister
+                </button>
+                @if($quizz != null)
+                    <a href="{{route('intro-quizz' , array('name' => $quizz->url))}}" target="_blank" class="btn btn-primary"><i class="fa fa-angle-left"></i> Voir le quizz</a>
+                @endif
+            </div>
         </div>
     </div>
 
+
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Paramétrages & Questions</a></li>
-        <li @if($quizz == null) class="disabled" @endif><a href="@if($quizz != null) {{route('results-quizz' , array('id' => $quizz->id))}} @endif">Résultats</a></li>
-        <li @if($quizz == null) class="disabled" @endif><a href="@if($quizz != null) {{route('stats-quizz' , array('id' => $quizz->id))}} @endif">Statistiques</a></li>
+        <li class="nav-item active"><a href="#" class="nav-link active">Paramétrages & Questions</a></li>
+        <li class="nav-item @if($quizz == null) disabled @endif "><a class="nav-link" href="@if($quizz != null) {{route('results-quizz' , array('id' => $quizz->id))}} @endif">Résultats</a></li>
+        <li class="nav-item @if($quizz == null) disabled @endif "><a class="nav-link" href="@if($quizz != null) {{route('stats-quizz' , array('id' => $quizz->id))}} @endif">Statistiques</a></li>
     </ul>
 
     {!! Form::model(

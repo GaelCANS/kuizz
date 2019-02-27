@@ -2,19 +2,25 @@
 
 @section('content')
 
-    <h4 class="page-title d-inline-block mr-2">
-        @if( $quizz == null ) Création @else Édition @endif d'un quizz @if( $quizz != null ) @endif
-    </h4>
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <h2 class="page-title text-center d-inline-block mx-auto">
+                @if( $quizz == null ) Création @else Édition @endif du quizz @if( $quizz != null ) @endif
+            </h2>
+        </div>
 
-    <div class="float-right">
-        <a href="{{action('QuizzController@export', $quizz)}}" class="btn btn-danger"><i class="mdi mdi-download"></i> Export vers Excel</a>
-        <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
+        <div class="col-md-4">
+            <div class="float-right">
+                <a href="{{action('QuizzController@export', $quizz)}}" class="btn btn-danger"><i class="mdi mdi-download"></i> Export vers Excel</a>
+                <a href="{{action('QuizzController@index')}}" class="btn btn-info"><i class="fa fa-angle-left"></i> Retour</a>
+            </div>
+        </div>
     </div>
 
     <ul class="nav nav-tabs">
-        <li><a href="{{action("QuizzController@show" , $quizz)}}">Paramétrage</a></li>
-        <li class="active"><a href="#">Résultats</a></li>
-        <li><a href="{{route('stats-quizz' , array('id' => $quizz->id))}}">Statistiques</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{action("QuizzController@show" , $quizz)}}">Paramétrage & Questions</a></li>
+        <li class="active nav-item"><a class="nav-link active" href="#">Résultats</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{route('stats-quizz' , array('id' => $quizz->id))}}">Statistiques</a></li>
     </ul>
 
 
