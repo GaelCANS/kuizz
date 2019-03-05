@@ -60,11 +60,12 @@ $(document).ready(function(){
 
     /**
      * Quizz - quizz
-     */
+
     displayReponseTiming($('input[name="display_responses"]:checked'))
     $('input[name="display_responses"]').on('change', function () {
         displayReponseTiming($(this))
     })
+    */
 
     /**
      * Quizz - answer

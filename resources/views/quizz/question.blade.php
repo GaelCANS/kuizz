@@ -10,6 +10,7 @@
             'method'        => 'Post',
             'id'            => 'quizz-form',
             'data-dr'       => $quizz->display_responses,
+            'data-submit'   => 0,
             'data-resptime' => $quizz->response_delay > 0 ? $quizz->response_delay*1000 : 1500,
             'data-mod'      => $modulo
         )
@@ -35,7 +36,7 @@
             </div>
             <div class="panel-body two-col text-center">
                 <div id="bulb-container">
-                    <span id="bulb-timer">{{(int) $quizz->response_delay-1}}</span>
+                    <span id="bulb-timer"></span>
                     <img src="{{ URL::to('/') }}/img/bulb.png" width="100px" id="bulb">
                 </div>
                 <span style="margin:20px 0px;display:block" class="wording-question">{{$question->wording}}</span>
@@ -73,6 +74,11 @@
                         <button type="submit" id="submit-form-btn" class="btn btn-primary btn-sm btn-block">
                             @if ($question->order != $quizz->questions->count()) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
                         </button>
+
+                        <button type="button" id="submit-form-btn-2" class="btn btn-primary btn-sm btn-block" style="display: none">
+                            @if ($question->order != $quizz->questions->count()) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
+                        </button>
+
                     </div>
                 </div>
             </div>

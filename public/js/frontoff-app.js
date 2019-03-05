@@ -18,38 +18,46 @@ $(document).ready(function(){
     /**
      * Quizz
      */
+    $('#submit-form-btn-2').on('click',function () {
+        $('#quizz-form').data('submit',1)
+    })
+
+    /**
+     * Quizz
+     */
     $('#quizz-form').on('submit', function (e) {
         var form = this
         $('#submit-form-btn').attr('disabled' , true)
         e.preventDefault()
         if ($('#quizz-form').data('dr') == 1) {
             var response_delay = 1500
-            var mdl = $(this).data('mod');
-            $('.question-answer').each(function () {
-                $(this).addClass( ($(this).data('sr')%mdl == 0) ? "oooook" : "kooooo" )
-            })
-            var qrc = '';
-            $('.qcr-m .qcr').each(function () {
-                if ($(this).data('qcr')%mdl == 0) {
-                    var str = $(this).text()
-                    qrc = CryptoJS.AES.decrypt(str.toString(), 'maloo');
-                    qrc = qrc.toString(CryptoJS.enc.Utf8)
-                }
-            })
+            //var response_delay = $('#quizz-form').data('resptime')
+
+            showResp()
+            var qrc = getQRC()
+
+            // Show explain case
             if (qrc != '') {
-                $('.answers-content').fadeOut(1500, function () {
-                    var widthPB = $('.panel-body').css('width')
-                    $('.panel-body').append('<small class="text-left">'+qrc+'</small>').css('width',widthPB).addClass('panel-body-idea')
-                    $('#bulb-container').show()
-                    timerBulb(response_delay/1000-1)
-                })
-                response_delay = $('#quizz-form').data('resptime')
+
+                showQRC(qrc)
+                
+                var downloadTimer = setInterval(function(){
+
+                    if ($('#quizz-form').data('submit') != 0)
+                        form.submit()
+
+                },1000);
+
+            }
+            // Show reponse
+            else {
+                setTimeout(function () {
+                    form.submit()
+                }, response_delay)
             }
 
-            setTimeout(function () {
-                form.submit()
-            }, response_delay)
         }
+            // Std case
         else {
             form.submit()
         }
@@ -179,4 +187,66 @@ function timer()
             $('#quizz-form').submit();
         })
     }
+}
+
+
+
+/**
+ * Question
+ */
+function submitForm(form)
+{
+    console.log(form)
+    console.log('submitform')
+
+    if ($('#quizz-form').data('submit') == 1)  {
+        $('#quizz-form').submit()
+    }
+    else {
+        console.log('on passe pas')
+        //submitForm(form)
+    }
+}
+
+/**
+ * Question
+ */
+function getQRC()
+{
+    var qrc = ''
+    var mdl = $('#quizz-form').data('mod')
+    $('.qcr-m .qcr').each(function () {
+        if ($(this).data('qcr')%mdl == 0) {
+            var str = $(this).text()
+            qrc = CryptoJS.AES.decrypt(str.toString(), 'maloo');
+            qrc = qrc.toString(CryptoJS.enc.Utf8)
+        }
+    })
+    return qrc
+}
+
+/**
+ * Question
+ */
+function showResp()
+{
+    var mdl = $('#quizz-form').data('mod')
+    $('.question-answer').each(function () {
+        $(this).addClass( ($(this).data('sr')%mdl == 0) ? "oooook" : "kooooo" )
+    })
+}
+
+/**
+ * Question
+ */
+function showQRC(qrc)
+{
+    $('.answers-content').fadeOut(1500, function () {
+        var widthPB = $('.panel-body').css('width')
+        $('.panel-body').append('<small class="text-left">'+qrc+'</small>').css('width',widthPB).addClass('panel-body-idea')
+        $('#bulb-container').show()
+        //timerBulb(response_delay/1000-1)
+        $('#submit-form-btn').hide()
+        $('#submit-form-btn-2').show()
+    })
 }

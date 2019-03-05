@@ -104,7 +104,7 @@
                                 {!! Form::radio('display_responses', '1', null , ['id' => 'display_responses-1']) !!}
 
                             </div>
-                            <div class="text" id="timing-response">
+                            <div class="text" id="timing-response" style="display: none">
                                 <div class="form-group">
                                     <h6>Temps par réponse</h6>
                                     {!! Form::text( 'response_delay' , null , array( 'class' => 'form-control' , 'placeholder' => "Temps pour l'affichage des réponses" ) ) !!}
