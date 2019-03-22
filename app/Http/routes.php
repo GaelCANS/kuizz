@@ -129,24 +129,29 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['prefix' => '/'], function() {
 
-    // Quizz - intro
-    Route::get('/{name}', 'QuizzController@intro')->name('intro-quizz');
-    // Quizz - rules
-    Route::get('/{name}/rules', 'QuizzController@rules')->name('rules-quizz');
-    // Quizz - register player
-    Route::get('/{name}/player', 'QuizzController@player')->name('player-quizz');
-    // Quizz - store register player
-    Route::post('/{name}/player', 'QuizzController@newPlayer')->name('store-player-quizz');
-    // Quizz - question
-    Route::get('/{name}/question', 'QuizzController@question')->name('question-quizz');
-    // Quizz - store answer
-    Route::post('/{name}/question', 'QuizzController@answered')->name('answer-quizz');
-    // Quizz - end
-    Route::get('/{name}/end', 'QuizzController@end')->name('end-quizz');
+    Route::group(['middleware' => 'activequizz'], function () {
+
+        // Quizz - intro
+        Route::get('/{name}', 'QuizzController@intro')->name('intro-quizz');
+        // Quizz - rules
+        Route::get('/{name}/rules', 'QuizzController@rules')->name('rules-quizz');
+        // Quizz - register player
+        Route::get('/{name}/player', 'QuizzController@player')->name('player-quizz');
+        // Quizz - store register player
+        Route::post('/{name}/player', 'QuizzController@newPlayer')->name('store-player-quizz');
+        // Quizz - question
+        Route::get('/{name}/question', 'QuizzController@question')->name('question-quizz');
+        // Quizz - store answer
+        Route::post('/{name}/question', 'QuizzController@answered')->name('answer-quizz');
+        // Quizz - end
+        Route::get('/{name}/end', 'QuizzController@end')->name('end-quizz');
+    });
     // Quizz - podium
     Route::get('/{name}/podium', 'QuizzController@podium')->name('podium-quizz');
     // Quizz - reload podium
     Route::post('/{name}/reload/podium', 'QuizzController@reloadPodium')->name('reload-podium-quizz');
+    // Quizz - inactive
+    Route::get('/{name}/finish', 'QuizzController@inactive')->name('inactive-quizz');
 
 });
 

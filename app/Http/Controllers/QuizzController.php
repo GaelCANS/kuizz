@@ -219,6 +219,17 @@ class QuizzController extends Controller
     }
 
 
+    public function inactive($name)
+    {
+        $quizz = Quizz::whereUrl($name)->first();
+        if ($quizz == null) return view('errors.404');
+
+        $quizz->load('Template');
+
+        return view('quizz.inactive' , compact('quizz'));
+    }
+
+
     public function intro($name)
     {
         $quizz = Quizz::whereUrl($name)->first();
