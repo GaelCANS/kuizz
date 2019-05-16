@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+    if ( \Illuminate\Support\Facades\Auth::user() ) {
+        return redirect('/admin/quizz');
+    }
     return view('welcome');
 });
 
