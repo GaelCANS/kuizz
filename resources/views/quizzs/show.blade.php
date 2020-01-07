@@ -183,6 +183,35 @@
                 </div>
 
             </div>
+            <div class="row">
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <h6>Questions aléatoires</h6>
+
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                {!! Form::label('shuffle-1', 'Oui', ['class' => '']) !!}
+                                {!! Form::radio('shuffle', '1', null , ['id' => 'shuffle-1']) !!}
+
+                            </div>
+                            <div class="radio">
+                                {!! Form::label('shuffle-0', 'Non', ['class' => '']) !!}
+                                {!! Form::radio('shuffle', '0', null , ['id' => 'shuffle-0']) !!}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group">
+                        <h6>Nombre de questions</h6>
+                        {!! Form::text( 'howmuch' , null , array( 'class' => 'form-control' , 'placeholder' => "Combien de questions ?" ) ) !!}
+                    </div>
+                </div>
+
+            </div>
 
 </div>
         <div class="col-8">

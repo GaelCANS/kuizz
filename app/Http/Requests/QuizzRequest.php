@@ -76,6 +76,8 @@ class QuizzRequest extends Request
             'single_rseponse'=> 'boolean',
             'ca_only'        => 'boolean',
             'regame'         => 'boolean',
+            'howmuch'        => 'integer',
+            'shuffle'        => 'boolean',
             'intro'          => 'string',
             'response_delay' => 'numeric'
         );

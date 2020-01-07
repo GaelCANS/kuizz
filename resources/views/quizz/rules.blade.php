@@ -6,7 +6,7 @@
 
     <div class="content-bloc text-center">
         <dl>
-            <dt>{{$quizz->questions->count()}} questions</dt>
+            <dt>{{$quizz->countQuestion}} questions</dt>
             <dd>{{ trans('quizz.'.$quizz->template->texts.'.digital-ou-pas') }}</dd>
         </dl>
         <dl>

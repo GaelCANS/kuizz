@@ -347,8 +347,6 @@ class QuizzController extends Controller
     {
         $quizz = Quizz::whereUrl($name)->first();
         if ($quizz == null) return view('errors.404');
-
-
         $agencies= Agency::orderBy('name' , 'ASC')
             ->whereDelete('0')
             ->pluck('name' , 'id')
@@ -371,7 +369,16 @@ class QuizzController extends Controller
         $datas = $request->all();
         $datas['quizz_id'] = $quizz->id;
         $user = User::create($datas);
-        $question = Question::where('quizz_id',$quizz->id)->notdeleted()->whereOrder(1)->first();
+
+        if ($quizz->shuffle == 1) {
+            $order = $quizz->shuffleOrder();
+            session( array('order' => $order, 'cursor' => 1 ) );
+            $question = Question::findOrFail($order[0]);
+        }
+        else {
+            $question = Question::where('quizz_id',$quizz->id)->notdeleted()->whereOrder(1)->first();
+        }
+
         session()->forget('quizz');
         session( array('user' => $user , 'question' => $question ) );
 
@@ -459,7 +466,7 @@ class QuizzController extends Controller
         $duree = Quizz::duree(session('user'));
         $rank = Quizz::rank($user);
         $participants = Quizz::participants($quizz);
-        $grade = Grade::getGrade($quizz->template, round(($score*100)/$quizz->questions->count()) );
+        $grade = Grade::getGrade($quizz->template, round(($score*100)/$quizz->countQuestion) );
 
         return view('quizz.end' , compact('quizz' , 'score' , 'duree' , 'user' , 'rank' , 'participants' , 'grade'));
     }

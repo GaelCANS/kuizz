@@ -4,6 +4,8 @@ namespace App;
 
 use App\Library\Traits\Scopable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
+
 
 class Question extends Model
 {
@@ -11,6 +13,12 @@ class Question extends Model
     use Scopable;
 
     protected $guarded = array('id');
+
+
+    public function getDisplayOrderAttribute()
+    {
+        return Session::has('cursor') ? session('cursor') : $this->order;
+    }
 
 
     public static function saveQuestions($questions)
@@ -39,7 +47,17 @@ class Question extends Model
 
     public static function nextQuestion($question)
     {
-        return Question::where('quizz_id',$question->quizz_id)->notdeleted()->whereOrder($question->order+1)->first();
+        if ($question->quizz->shuffle == 0) {
+            return Question::where('quizz_id',$question->quizz_id)->notdeleted()->whereOrder($question->order+1)->first();
+        }
+        else {
+            $order = session('order');
+            $cursor = session('cursor');
+            if (!isset($order[$cursor])) return null;
+            $question = Question::findOrFail($order[$cursor]);
+            $cursor = session(array('cursor' => $cursor+1));
+            return $question;
+        }
     }
 
     // 1 to 1

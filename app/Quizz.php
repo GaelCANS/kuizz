@@ -14,6 +14,25 @@ class Quizz extends Model
     protected $guarded = array('id');
 
 
+    public function getCountQuestionAttribute()
+    {
+        return $this->howmuch == 0 ? $this->questions->count() : $this->howmuch;
+    }
+
+    public function shuffleOrder()
+    {
+        $questions = $this->questions;
+        $array = array();
+        foreach ($questions as $question) {
+            $array[] = $question->id;
+        }
+        shuffle($array);
+        if ($this->howmuch > 0) {
+            return array_slice($array,0,$this->howmuch);
+        }
+        return $array;
+    }
+
     public static function urlIsUnique($quizz,$url)
     {
         return Quizz::where('id','!=',$quizz->id)->where('url',$url)->count() == 0;
@@ -89,7 +108,7 @@ class Quizz extends Model
 
         return DB::table('question_user AS au')
             ->select(
-                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->questions()->count().') AS percent , u.name , u.email , u.id , u.sended_at , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree, a.name AS agency, u.agency_id')
+                DB::raw('SUM(score) total, (SUM(score)*100/'.$quizz->countQuestion.') AS percent , u.name , u.email , u.id , u.sended_at , TIMESTAMPDIFF(SECOND,u.created_at,u.finished_at) AS duree, a.name AS agency, u.agency_id')
             )
             ->join('users AS u','u.id','=','au.user_id')
             ->leftJoin('agencies AS a','a.id','=','u.agency_id')

@@ -23,7 +23,7 @@ $i=0;
           	<small>{{$grade->name}}</small>
           </span>
           <span class="podium-score">
-          {{$top->total}}/{{$quizz->questions()->count()}}
+          {{$top->total}}/{{$quizz->countQuestion}}
 
               ({{$top->duree}}")
         </span>

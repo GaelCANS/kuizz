@@ -22,7 +22,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="row">
-                        <span class="col-xs-12 col-md-2"><small>{{$question->order}}/{{$quizz->questions->count()}}</small></span>
+                        <span class="col-xs-12 col-md-2"><small>{{$question->displayOrder}}/{{$quizz->countQuestion}}</small></span>
                         <div class="qcr-m" style="display: none">
                             <div class="qcr" data-qcr="{{24*$modulo}}">{{$question->response}}</div>
                             <div class="qcr" data-qcr="{{24*$modulo+1}}">{{$response_false}}</div>
