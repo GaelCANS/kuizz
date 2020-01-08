@@ -15,11 +15,19 @@ class Question extends Model
     protected $guarded = array('id');
 
 
-    public function getDisplayOrderAttribute()
+    public function displayOrder($quizz)
     {
-        return Session::has('cursor') ? session('cursor') : $this->order;
+        return $quizz->howmuch > 0 ? session('cursor') : $this->order;
     }
 
+    public function isLast($quizz)
+    {
+        if ($quizz->howmuch > 0) {
+            $cursor = session('cursor');
+            return $cursor != $quizz->howmuch;
+        }
+        return $this->order != $quizz->questions->count();
+    }
 
     public static function saveQuestions($questions)
     {

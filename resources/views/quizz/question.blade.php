@@ -22,7 +22,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="row">
-                        <span class="col-xs-12 col-md-2"><small>{{$question->displayOrder}}/{{$quizz->countQuestion}}</small></span>
+                        <span class="col-xs-12 col-md-2"><small>{{$question->displayOrder($quizz)}}/{{$quizz->countQuestion}}</small></span>
                         <div class="qcr-m" style="display: none">
                             <div class="qcr" data-qcr="{{24*$modulo}}">{{$question->response}}</div>
                             <div class="qcr" data-qcr="{{24*$modulo+1}}">{{$response_false}}</div>
@@ -72,11 +72,11 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button type="submit" id="submit-form-btn" class="btn btn-primary btn-sm btn-block">
-                            @if ($question->order != $quizz->questions->count()) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
+                            @if ($question->isLast($quizz)) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
                         </button>
 
                         <button type="button" id="submit-form-btn-2" class="btn btn-primary btn-sm btn-block" style="display: none">
-                            @if ($question->order != $quizz->questions->count()) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
+                            @if ($question->isLast($quizz)) {{ trans('quizz.'.$quizz->template->texts.'.next') }} @else {{ trans('quizz.'.$quizz->template->texts.'.end') }} @endif
                         </button>
 
                     </div>
